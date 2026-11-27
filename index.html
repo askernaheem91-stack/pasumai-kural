@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#146c34">
+<title>Pasumai Kural</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%23146c34%27/%3E%3Cpath%20d%3D%27M32%2054C28%2038%2030%2028%2036%2020%27%20stroke%3D%27%23fff%27%20stroke-width%3D%275%27%20fill%3D%27none%27/%3E%3Cpath%20d%3D%27M34%2026C12%2028%208%2014%2010%208C28%206%2036%2014%2034%2026Z%27%20fill%3D%27%238cc63f%27/%3E%3Cpath%20d%3D%27M36%2022C38%206%2050%204%2058%206C58%2018%2048%2024%2036%2022Z%27%20fill%3D%27%23f2b50f%27/%3E%3C/svg%3E">
+<style>:root{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}body{margin:0}</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500;600;700&family=Mukta+Malar:wght@400;600;700&display=swap">
+<style>
+/* Layout: one phone-width column, sticky Back/Home bar, large bordered cards. */
+:root{
+ --bg:#e9f4e1; --card:#ffffff; --ink:#12301c; --mute:#4d6355; --leaf:#146c34; --deep:#0d4a25; --line:#9cc79f; --soft:#f3f9ee;
+ --haldi:#f2b50f; --haldi-ink:#3a2a00; --warn-bg:#fff2cc; --warn:#7a5200; --bad-bg:#fde5df; --bad:#9c2a12; --on-leaf:#ffffff;
+ --sky:#cfeaf0; --field1:#8cc63f; --field2:#4c9a2a; --field3:#2f7a25; --water:#2b7fa8;
+ --display:"Baloo Thambi 2","Mukta Malar",system-ui,sans-serif; --body:"Mukta Malar",system-ui,"Noto Sans Tamil",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#0c1a11; --card:#142619; --ink:#e7f2e5; --mute:#a7bfac; --leaf:#5fcd7f; --deep:#0f3d22; --line:#2f5a3b; --soft:#1b3222;
+ --haldi:#f2b50f; --haldi-ink:#2a1e00; --warn-bg:#3a2e0c; --warn:#ffd978; --bad-bg:#43190f; --bad:#ffb4a3; --on-leaf:#06210f;
+ --sky:#10303a; --field1:#42702a; --field2:#2f5b22; --field3:#21461b; --water:#6fc3ea; color-scheme:dark}}
+:root[data-theme="dark"]{
+ --bg:#0c1a11; --card:#142619; --ink:#e7f2e5; --mute:#a7bfac; --leaf:#5fcd7f; --deep:#0f3d22; --line:#2f5a3b; --soft:#1b3222;
+ --haldi:#f2b50f; --haldi-ink:#2a1e00; --warn-bg:#3a2e0c; --warn:#ffd978; --bad-bg:#43190f; --bad:#ffb4a3; --on-leaf:#06210f;
+ --sky:#10303a; --field1:#42702a; --field2:#2f5b22; --field3:#21461b; --water:#6fc3ea; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:17px/1.55 var(--body);-webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 32px}
+h1,h2,h3{font-family:var(--display);line-height:1.25;margin:0;text-wrap:balance}
+h1{font-size:1.65rem;color:var(--leaf)} h2{font-size:1.25rem;margin:22px 0 8px} h3{font-size:1.1rem}
+p{margin:6px 0} ul,ol{margin:6px 0;padding-left:1.25em} li{margin:3px 0}
+a{color:var(--leaf)} .mute{color:var(--mute);font-size:.9rem}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;background:var(--bg)}
+.bar button{white-space:nowrap}
+.bar b{min-width:0;font-size:.95rem;font-family:var(--display);color:var(--leaf);letter-spacing:.02em;text-align:center}
+button,.btn{font:600 1.02rem/1.2 var(--display);border-radius:14px;border:2px solid var(--leaf);background:var(--card);color:var(--leaf);padding:11px 16px;cursor:pointer;min-height:48px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center}
+.primary{background:var(--leaf);color:var(--on-leaf)}
+.cta{background:var(--haldi);border-color:var(--haldi);color:var(--haldi-ink);font-size:1.3rem;width:100%;min-height:60px}
+.wide{width:100%}
+.small{min-height:40px;padding:7px 13px;font-size:.95rem}
+:focus-visible{outline:3px solid var(--haldi);outline-offset:2px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 16px;margin:10px 0;min-width:0;overflow-wrap:anywhere}
+.stack{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap} .row>*{flex:1 1 140px;min-width:0}
+label{display:block;font-weight:600;margin:12px 0 4px}
+input,select,textarea{width:100%;font:1.02rem var(--body);color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px;min-height:48px}
+textarea{min-height:90px;resize:vertical}
+.err{color:var(--bad);font-size:.9rem;margin:3px 0 0}
+[aria-invalid="true"]{border-color:var(--bad)}
+.note{border-radius:14px;padding:11px 14px;margin:10px 0;background:var(--soft);border:1px solid var(--line)}
+.note.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.note.bad{background:var(--bad-bg);color:var(--bad);border-color:var(--bad)}
+.tag{display:inline-block;border-radius:99px;padding:1px 11px;font-size:.82rem;font-weight:700;background:var(--soft);border:1px solid var(--line)}
+.tag.good{background:var(--leaf);border-color:var(--leaf);color:var(--on-leaf)}
+.tag.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+/* home */
+.hero{margin:12px 0 0;border-radius:26px;overflow:hidden;border:2px solid var(--line);background:var(--card);text-align:center}
+.hero svg{display:block;width:100%;height:auto}
+.hero .in{padding:6px 18px 20px}
+.hero h1{font-size:2.15rem;letter-spacing:.01em}
+.tamil{font-family:var(--display);font-size:1.15rem;color:var(--mute);margin:0}
+/* dashboard */
+.who{background:var(--deep);color:#fff;border-radius:20px;padding:16px 18px;margin-top:4px}
+.who h1{color:#fff} .who p{margin:3px 0} .who a{color:#ffe08a}
+.menu{display:flex;align-items:center;gap:14px;width:100%;justify-content:flex-start;text-align:left;color:var(--ink);border-radius:18px;padding:12px 14px}
+.menu .ico{font-size:2rem;width:54px;height:54px;border-radius:14px;background:var(--soft);display:grid;place-items:center;flex:none}
+.menu span.t{flex:1;min-width:0;font-size:1.12rem}
+.menu small{display:block;font:400 .88rem var(--body);color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.grid button{flex-direction:column;color:var(--ink);padding:16px 8px;border-radius:18px} .grid .ico{font-size:2rem}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stats div{background:var(--soft);border-radius:14px;padding:9px 12px}
+.stats b{display:block;font:700 1.35rem var(--display);font-variant-numeric:tabular-nums}
+.stats span{color:var(--mute);font-size:.86rem}
+.now{display:flex;align-items:center;gap:14px} .now .big{font:700 3.2rem/1.1 var(--display);font-variant-numeric:tabular-nums} .now .ico{font-size:3rem}
+.day{display:grid;grid-template-columns:5.2em 2em 1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+.rain{height:10px;border-radius:6px;background:var(--soft);overflow:hidden} .rain i{display:block;height:100%;background:var(--water)}
+.day small{grid-column:3/5;color:var(--mute);margin-top:-6px}
+.crophead{display:flex;gap:14px;align-items:center} .crophead svg{width:74px;height:74px;flex:none;background:var(--soft);border-radius:16px}
+dl{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);gap:5px 12px;margin:10px 0} dt{color:var(--mute);font-weight:600} dd{margin:0}
+@media (max-width:420px){dl{grid-template-columns:1fr;gap:0} dd{margin-bottom:8px}}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.95rem}
+th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:right;vertical-align:top} th:first-child,td:first-child{text-align:left}
+th,td{overflow-wrap:normal;word-break:normal;padding-inline:4px}
+tr.nowrow td{background:var(--warn-bg);color:var(--warn);font-weight:700}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{margin:0;display:flex;gap:7px;align-items:center;border:2px solid var(--line);background:var(--card);border-radius:99px;padding:7px 13px;font-weight:600;font-size:.95rem}
+.checks input{width:18px;height:18px;min-height:0;accent-color:var(--leaf)}
+.art{width:120px;max-width:40%;height:auto;float:right;margin:0 0 8px 12px;text-align:center;font-size:.75rem;color:var(--mute)} .art svg{width:100%;height:auto;background:var(--soft);border-radius:14px}
+#preview img{max-height:260px;border-radius:14px;display:block;margin:10px auto}
+.fileb input{position:absolute;opacity:0;width:1px;height:1px;min-height:0} .fileb{position:relative;margin:0} .fileb:focus-within{outline:3px solid var(--haldi)}
+details summary{cursor:pointer;font-weight:700;color:var(--leaf);padding:6px 0}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));max-width:520px;margin:auto;background:var(--deep);color:#fff;padding:13px 16px;border-radius:14px;text-align:center;font-weight:700;z-index:20}
+</style>
+<div class="wrap">
+<nav class="bar" id="bar" aria-label="Navigation" hidden><button class="small" id="back">&#8249; Back</button><b>PASUMAI KURAL</b><button class="small" data-go="dashboard">&#127968; Home</button></nav>
+<main id="screen"></main></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<script>
+(()=>{
+"use strict";
+/* ---------- Places ---------- */
+const TN_DISTRICTS = {
+ "Ariyalur":[11.14,79.08],"Chengalpattu":[12.68,79.98],"Chennai":[13.08,80.27],"Coimbatore":[11.02,76.96],"Cuddalore":[11.75,79.77],
+ "Dharmapuri":[12.13,78.16],"Dindigul":[10.37,77.98],"Erode":[11.34,77.72],"Kallakurichi":[11.74,78.96],"Kancheepuram":[12.83,79.70],
+ "Kanniyakumari":[8.18,77.43],"Karur":[10.96,78.08],"Krishnagiri":[12.52,78.21],"Madurai":[9.93,78.12],"Mayiladuthurai":[11.10,79.65],
+ "Nagapattinam":[10.77,79.84],"Namakkal":[11.22,78.17],"Nilgiris":[11.41,76.70],"Perambalur":[11.23,78.88],"Pudukkottai":[10.38,78.82],
+ "Ramanathapuram":[9.37,78.83],"Ranipet":[12.93,79.33],"Salem":[11.66,78.15],"Sivaganga":[9.85,78.48],"Tenkasi":[8.96,77.32],
+ "Thanjavur":[10.79,79.14],"Theni":[10.01,77.48],"Thoothukudi":[8.76,78.13],"Tiruchirappalli":[10.79,78.70],"Tirunelveli":[8.71,77.76],
+ "Tirupathur":[12.50,78.57],"Tiruppur":[11.11,77.34],"Tiruvallur":[13.14,79.91],"Tiruvannamalai":[12.23,79.07],"Tiruvarur":[10.77,79.64],
+ "Vellore":[12.92,79.13],"Viluppuram":[11.94,79.49],"Virudhunagar":[9.58,77.96]
+};
+const DELTA_TRACT = ["Thanjavur","Tiruvarur","Nagapattinam","Mayiladuthurai","Coimbatore"];
+const STATES = ["Tamil Nadu","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli and Daman and Diu","Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry"];
+const SOILS = ["Sandy Soil","Clay Soil","Red Soil","Black Soil","Alluvial Soil","Loamy Soil"];
+const IRRIGATION_TYPES = ["Rainfed","Drip Irrigation","Sprinkler Irrigation","Canal Irrigation","Borewell"];
+
+/* ---------- Crops (recommendation database) ----------
+   water: 1 low, 2 medium, 3 high.  days: [min,max] */
+const CROPS = {
+ paddy:{name:"Paddy",soils:["Clay Soil","Alluvial Soil"],maybe:["Loamy Soil","Black Soil"],seasons:["Kharif","Rabi","Summer"],local:["Kuruvai","Samba","Thaladi","Navarai"],when:"Kuruvai (Jun–Jul), Samba (Aug), Thaladi (Sep–Oct), Navarai (Dec–Jan)",water:3,waterText:"About 1250 mm for a 110-day crop",days:[105,150],
+  steps:["Choose a variety whose duration fits the season.","Raise a healthy nursery and puddle and level the main field.","Transplant young seedlings and keep shallow water for the first week.","Apply fertilizer in splits and keep the field weed-free for the first 40 days.","Drain the field before harvest and harvest when most grains turn golden."]},
+ groundnut:{name:"Groundnut",soils:["Red Soil","Sandy Soil","Loamy Soil"],maybe:["Alluvial Soil","Black Soil"],seasons:["Kharif","Rabi","Summer"],when:"Kharif, Rabi and irrigated summer",water:2,lowOK:true,waterText:"About 510 mm for a 105-day crop",days:[105,115],
+  steps:["Plough to a fine tilth.","Treat seed with Rhizobium and sow in lines.","Weed at about 20 and 45 days.","Apply gypsum at 45 days and earth up.","Harvest when the inner side of the pod shell turns dark."]},
+ ragi:{name:"Ragi (finger millet)",soils:["Red Soil","Loamy Soil","Sandy Soil"],maybe:["Black Soil","Alluvial Soil"],seasons:["Kharif","Rabi","Summer"],when:"Rainfed in Kharif; irrigated in Rabi or summer",water:1,waterText:"About 310 mm for a 95-day crop",days:[95,110],
+  steps:["Prepare a fine seedbed.","Sow in lines or transplant young seedlings.","Thin and weed within the first month.","Irrigate at flowering if water is available.","Harvest ears when they turn brown."]},
+ sorghum:{name:"Sorghum (cholam)",soils:["Black Soil","Red Soil","Loamy Soil"],maybe:["Clay Soil","Alluvial Soil","Sandy Soil"],seasons:["Kharif","Rabi","Summer"],when:"Kharif and Rabi; irrigated summer",water:1,waterText:"About 500 mm for a 105-day crop",days:[100,115],
+  steps:["Plough and form ridges or beds.","Sow treated seed at the right spacing.","Thin and weed early.","Protect against shoot fly in the first month.","Harvest when grains are hard."]},
+ blackgram:{name:"Blackgram (pulse)",soils:["Black Soil","Alluvial Soil","Loamy Soil","Red Soil"],maybe:["Clay Soil"],seasons:["Kharif","Rabi","Summer"],when:"Kharif, Rabi, summer and rice fallows",water:1,waterText:"About 280 mm for a 65-day crop",days:[65,75],
+  steps:["Treat seed with Rhizobium.","Sow in lines on a well-drained field.","Weed once at about 20 days.","Avoid water stagnation.","Harvest when most pods turn black."]},
+ maize:{name:"Maize",soils:["Loamy Soil","Alluvial Soil","Red Soil","Black Soil"],maybe:["Sandy Soil","Clay Soil"],seasons:["Kharif","Rabi","Summer"],when:"Jun–Jul, Sep–Oct and Jan–Feb",water:2,waterText:"About 500 mm for a 100-day crop",days:[95,110],
+  steps:["Apply farmyard manure at ploughing.","Sow on ridges at recommended spacing.","Check whorls often for fall armyworm.","Do not let the crop dry at tasseling and silking.","Harvest when the cob sheath turns dry and brown."]},
+ cotton:{name:"Cotton",soils:["Black Soil"],maybe:["Red Soil","Alluvial Soil","Loamy Soil"],seasons:["Kharif","Rabi","Summer"],when:"Winter irrigated (Aug–Sep), summer irrigated (Feb–Mar), rainfed with monsoon",water:2,lowOK:true,waterText:"About 600 mm for a 165-day crop",days:[120,180],
+  steps:["Make ridges and furrows.","Sow treated seed and fill gaps early.","Keep weed-free for the first two months.","Watch for sucking pests and bollworms.","Pick fully opened bolls in dry weather."]},
+ chilli:{name:"Chilli",soils:["Loamy Soil","Red Soil","Black Soil"],maybe:["Alluvial Soil","Sandy Soil"],seasons:["Kharif","Rabi","Summer"],when:"Jan–Feb, Jun–Jul and Sep–Oct",water:2,waterText:"Irrigate weekly after establishment",days:[165,270],
+  steps:["Raise seedlings in a protected nursery.","Apply farmyard manure and transplant on ridges.","Irrigate weekly and drain extra water.","Remove virus-affected plants early.","Pick green or ripe fruits as the market needs."]},
+ tomato:{name:"Tomato",soils:["Loamy Soil","Red Soil","Alluvial Soil"],maybe:["Black Soil","Sandy Soil"],seasons:["Kharif","Rabi","Summer"],when:"Jun–Jul, Nov–Dec and Feb–Mar",water:2,waterText:"About 600–800 mm",days:[135,165],
+  steps:["Raise seedlings under net.","Transplant at about 25 days on ridges.","Stake tall plants.","Irrigate evenly to prevent fruit cracking.","Pick fruits at the stage your market prefers."]},
+ sugarcane:{name:"Sugarcane",soils:["Loamy Soil","Alluvial Soil","Clay Soil"],maybe:["Black Soil","Red Soil"],seasons:["Rabi","Summer"],when:"Main planting December–May",water:3,waterText:"About 2200 mm for a 360-day crop",days:[300,360],
+  steps:["Choose healthy, disease-free setts.","Plant in furrows with good drainage.","Earth up and remove dry leaves.","Never let the crop dry in the first 120 days.","Harvest at maturity and crush quickly."]},
+ banana:{name:"Banana",soils:["Loamy Soil","Alluvial Soil","Clay Soil"],maybe:["Red Soil","Black Soil"],seasons:["Rabi","Summer"],when:"Depends on variety; common windows are Jan–May and Nov–Dec",water:3,waterText:"About 1800 mm with surface irrigation",days:[360,450],
+  steps:["Plant healthy suckers or tissue-culture plants.","Irrigate after planting, again after 4 days, then weekly.","Remove extra side suckers.","Prop plants carrying bunches.","Harvest bunches 100–150 days after flowering."]}
+};
+
+/* ---------- Pests and diseases ---------- */
+const SYMPTOMS = [
+ ["yellow","Yellow leaves",/yellow|pale|மஞ்சள்/i],
+ ["spots","Spots on leaves",/spot|lesion|patch|dot|blight/i],
+ ["curl","Leaf curling",/curl|crinkl|twist|roll/i],
+ ["holes","Holes or chewed parts",/\bhole|chew|eaten|\bcut|\bbor(e|ing|ed)|\bmine/i],
+ ["wilt","Drying or wilting plants",/dry|dried|wilt|dead|dying|droop|burn/i],
+ ["rot","Rotting stem or fruit",/\brot|\bsoft|smell|ooze|fruit.*(black|damage)/i],
+ ["powder","White powder or rusty pustules",/powder|mould|mold|white coat|rust|pustule/i],
+ ["insects","Insects seen on plant",/insect|worm|larva|caterpillar|hopper|\bfly|flies|\bbug|aphid|thrip|weevil|borer/i],
+ ["stunt","Poor or stunted growth",/stunt|small|poor growth|not grow|short/i]
+];
+const PD = (name,kind,art,tags,symptoms,causes,prevention,treatment)=>({name,kind,art,tags,symptoms,causes,prevention,treatment});
+const PESTS = {
+ paddy:[
+  PD("Blast","Disease","spindle",["spots","wilt"],["Spindle-shaped spots on leaves with grey centres and brown edges","Neck of the panicle may turn black and break"],"A fungus. Favoured by cool nights, dew, cloudy weather and too much nitrogen.",["Grow a resistant variety","Keep proper spacing","Apply nitrogen in splits and only as recommended","Clear grass weeds from bunds"],["Stop extra nitrogen for now","Ask your agriculture officer for the approved fungicide and dose"]),
+  PD("Bacterial leaf blight","Disease","edge",["yellow","wilt","spots"],["Yellow to straw-coloured stripes starting at leaf tips and edges, with wavy margins","Leaves dry from the tip downwards"],"Bacteria spread by water, wind-driven rain and injured leaves.",["Use resistant or tolerant varieties","Avoid excess nitrogen","Do not let water flow from an affected field to a healthy one"],["Drain the field for a few days where possible","Get advice from the agriculture officer before spraying"]),
+  PD("Brown planthopper","Pest","insects",["insects","wilt","yellow"],["Small brown insects crowded at the base of plants","Plants turn yellow, then dry in round patches (hopper burn)"],"A sap-sucking insect. Builds up with dense planting, standing water and heavy nitrogen.",["Leave alleys between planting strips","Use alternate wetting and drying","Protect spiders and other natural enemies"],["Drain water for 3–4 days","Part the plants and check the base often","Spray only on an officer's advice, aimed at the base"]),
+  PD("Stem borer","Pest","deadheart",["holes","wilt","insects"],["Central shoot dries in young plants (dead heart)","Empty white panicles at flowering (white ear)"],"Caterpillars boring inside the stem.",["Clip seedling tips with egg masses before transplanting","Use light or pheromone traps","Plough in stubble after harvest"],["Release Trichogramma egg parasitoids where available","Use approved insecticide only if damage crosses the advised level"])
+ ],
+ tomato:[
+  PD("Early blight","Disease","rings",["spots","yellow","wilt"],["Brown spots with ring-like circles on older leaves","Yellowing around spots; leaves dry and fall"],"A fungus that survives on crop debris and spreads in warm, wet weather.",["Keep proper spacing","Avoid wetting the leaves","Remove infected plant material","Rotate with a different crop family"],["Remove badly affected leaves","Ask your officer for the approved fungicide"]),
+  PD("Leaf curl virus","Disease","curl",["curl","stunt","yellow","insects"],["Leaves curl upward and become small and thick","Plants stay short with few fruits"],"A virus carried by whiteflies.",["Grow resistant hybrids","Raise seedlings under insect net","Use yellow sticky traps","Grow maize or sorghum as a border"],["Pull out and destroy affected plants early","Control whiteflies as advised; the virus itself has no cure"]),
+  PD("Fruit borer","Pest","holefruit",["holes","insects","rot"],["Round holes in fruits with a caterpillar feeding inside","Damaged fruits rot"],"Caterpillars of a moth.",["Plant marigold as a trap crop","Set pheromone traps"],["Collect and destroy damaged fruits and larvae","Use approved biological or chemical sprays on advice"]),
+  PD("Bacterial wilt","Disease","wilt",["wilt","rot"],["Whole plant wilts suddenly while leaves are still green","Cut stem gives a milky ooze in water"],"Soil-borne bacteria.",["Use resistant varieties","Rotate with cereals","Keep drainage good"],["Remove affected plants with soil around roots","There is no reliable spray cure; consult your officer"])
+ ],
+ cotton:[
+  PD("Leafhopper (jassid)","Pest","edge",["curl","yellow","insects","spots"],["Leaf edges turn yellow then red-brown","Leaves curl downward","Small green insects move sideways under leaves"],"Sap-sucking insects.",["Use tolerant varieties","Avoid excess nitrogen","Protect natural enemies"],["Check the underside of leaves weekly","Spray only when the advised level is crossed"]),
+  PD("Bollworm","Pest","holefruit",["holes","insects","rot"],["Holes in buds and bolls","Flowers fail to open properly; lint is stained"],"Caterpillars including pink bollworm.",["Set pheromone traps","Sow on time with neighbours","Remove crop residue after the last picking"],["Destroy damaged buds and bolls","Follow the approved spray advice"]),
+  PD("Bacterial blight","Disease","angular",["spots","wilt","rot"],["Angular water-soaked spots bounded by veins","Black streaks on stems and spots on bolls"],"Seed-borne and rain-splashed bacteria.",["Use clean treated seed","Remove old crop debris","Rotate crops"],["Remove badly affected plants","Ask the officer for the approved spray"])
+ ],
+ groundnut:[
+  PD("Leaf spot (tikka)","Disease","spots",["spots","yellow","wilt"],["Dark round spots on leaves, often with a yellow ring","Early leaf fall"],"Fungi surviving on crop debris.",["Rotate crops","Destroy debris and volunteer plants","Grow tolerant varieties"],["Ask your officer for the approved fungicide at first signs"]),
+  PD("Rust","Disease","powder",["powder","spots","wilt"],["Small orange-brown pustules under the leaves","Leaves dry but stay attached"],"A fungus spread by wind.",["Grow tolerant varieties","Sow on time","Remove volunteer plants"],["Get an approved fungicide recommendation early"]),
+  PD("Leaf miner","Pest","mine",["holes","insects","curl","wilt"],["Brown blotches where larvae feed inside leaves","Folded or webbed leaflets"],"Small caterpillars mining leaves.",["Grow cowpea or soybean as a trap crop","Use light traps"],["Hand-pick folded leaflets in small plots","Spray only on advice"])
+ ],
+ banana:[
+  PD("Sigatoka leaf spot","Disease","streaks",["spots","yellow","wilt"],["Narrow yellow or brown streaks that grow into spots with grey centres","Leaves dry early"],"A fungus favoured by humid weather.",["Give wider spacing","Drain well","Remove dried leaves"],["Cut and destroy affected leaf parts","Ask for the approved fungicide spray"]),
+  PD("Fusarium wilt (Panama disease)","Disease","wilt",["wilt","yellow","rot","stunt"],["Older leaves turn yellow and hang down","Brown discolouration inside the stem"],"A soil fungus that persists for many years.",["Plant resistant varieties","Use disease-free planting material","Do not move soil or suckers from affected fields"],["Uproot and destroy affected plants","Report to your agriculture officer; there is no reliable cure"]),
+  PD("Pseudostem weevil","Pest","holefruit",["holes","insects","rot","wilt"],["Small holes with jelly-like ooze on the stem","Plants weaken and break"],"A beetle whose grubs tunnel in the stem.",["Keep the garden clean","Remove old leaf sheaths","Use traps made of cut stem pieces"],["Destroy badly infested plants","Follow the approved stem treatment"])
+ ],
+ chilli:[
+  PD("Leaf curl complex","Disease","curl",["curl","stunt","yellow","insects"],["Leaves curl and crinkle","Plants stay bushy and small"],"Viruses carried by whiteflies; thrips and mites also curl leaves.",["Grow resistant hybrids","Protect the nursery with net","Use sticky traps"],["Remove virus-affected plants","Identify the insect or mite with your officer before spraying"]),
+  PD("Anthracnose (fruit rot)","Disease","rings",["rot","spots","wilt"],["Sunken dark spots with rings on ripe fruits","Twigs dry from the tip (dieback)"],"A seed-borne fungus spread in humid weather.",["Use treated seed","Remove infected fruits and twigs","Rotate crops"],["Ask for the approved fungicide","Dry harvested fruits on a clean surface"]),
+  PD("Powdery mildew","Disease","powder",["powder","yellow","spots"],["White powder under leaves with yellow patches above","Leaves drop"],"A fungus favoured by dry days and humid nights.",["Grow resistant hybrids","Avoid crowding"],["Get an approved sulphur or fungicide recommendation"])
+ ],
+ maize:[
+  PD("Fall armyworm","Pest","holes",["holes","insects","stunt"],["Ragged holes and windows in leaves","Sawdust-like droppings in the whorl"],"A moth caterpillar that feeds in the whorl.",["Plough deeply before sowing","Sow on time","Set pheromone traps","Grow a cowpea or sorghum border"],["Crush egg masses and young larvae","Apply the approved treatment into the whorl on advice"]),
+  PD("Turcicum leaf blight","Disease","spindle",["spots","wilt"],["Long cigar-shaped grey-brown lesions on leaves","Leaves look scorched"],"A fungus surviving on residue.",["Grow tolerant hybrids","Rotate crops","Remove residue"],["Ask for the approved fungicide if it spreads early"]),
+  PD("Stem borer","Pest","deadheart",["holes","wilt","insects"],["Rows of small holes in leaves","Central shoot dries (dead heart)"],"Caterpillars tunnelling in the stem.",["Destroy stubble","Intercrop with pulses"],["Remove dead hearts","Follow approved whorl treatment"])
+ ],
+ sugarcane:[
+  PD("Red rot","Disease","rot",["rot","wilt","yellow"],["Upper leaves yellow and dry","Split cane is red inside with white cross bands and a sour smell"],"A fungus spread mainly through infected setts.",["Plant healthy setts of resistant varieties","Rotate with rice","Do not ratoon an affected crop"],["Uproot and burn affected clumps","Inform your sugar mill or agriculture officer"]),
+  PD("Early shoot borer","Pest","deadheart",["holes","wilt","insects"],["Dead heart in young shoots that pulls out easily and smells bad"],"A moth caterpillar.",["Apply trash mulch","Irrigate on time","Earth up"],["Remove dead hearts","Use approved biological control on advice"]),
+  PD("Smut","Disease","whip",["powder","stunt"],["A long black whip-like growth from the top of the cane","Thin, weak shoots"],"A fungus spread by spores and infected setts.",["Use disease-free setts","Grow resistant varieties"],["Bag and remove whips carefully, then destroy the clump"])
+ ]
+};
+
+/* ---------- Irrigation ----------
+   Stage text from TNAU irrigation pages; [light soil, heavy soil] where they differ. */
+const T = "https://agritech.tnau.ac.in/";
+const IRRIGATION = {
+ paddy:{mm:1250,src:T+"agriculture/agri_irrigationmgt_rice_transplantedpuddled.html",methods:["Flood Irrigation"],
+  stages:[["Transplanting to day 7","Keep about 2 cm of water for seven days.",null,false],
+   ["Establishment and tillering","Flood to about 5 cm, then irrigate again after the ponded water disappears.",["Loamy soil: 1 day after it disappears in summer, 3 days in winter.","Clay soil: just before or as it disappears in summer, 1–2 days after in winter."],true],
+   ["Panicle initiation to flowering (critical)","Keep the soil saturated. Do not let the field dry.",null,true],
+   ["Grain filling to maturity","Avoid standing water of 5 cm or more. Irrigate one day after water disappears, and give the last irrigation 15 days before harvest.",null,false]],
+  save:["Use alternate wetting and drying instead of continuous deep flooding","Level the field and plug bund leaks","Keep standing water at 5 cm or less"]},
+ groundnut:{mm:510,src:T+"agriculture/agri_irrigationmgt_groundnut.html",methods:["Sprinkler Irrigation","Furrow Irrigation","Drip Irrigation"],
+  stages:[["Sowing and establishment","Irrigate at sowing and give a life irrigation 4–5 days later.",null,false],
+   ["Before flowering (to day 25)","Give one irrigation at about 20 days.",null,false],
+   ["Flowering (critical)","Give two irrigations.",null,true],
+   ["Pegging (critical)","Give one or two irrigations.",null,true],
+   ["Pod development (critical)","Give two or three irrigations depending on the soil.",null,true],
+   ["Maturity","Irrigate sparingly, only if the crop is drying before the pods fill.",null,false]],
+  save:["Sprinklers can save about 30% of water","Add composted coir pith to heavy soils","Under water stress, 0.5% potassium chloride spray at flowering and pod stage helps"]},
+ tomato:{mm:"600–800",src:null,methods:["Drip Irrigation","Furrow Irrigation","Sprinkler Irrigation"],
+  stages:[["Planting and establishment","Irrigate at transplanting and again about 3 days later.",null,false],
+   ["Vegetative growth","Irrigate about once a week.",["Light soil: every 5–6 days.","Heavy soil: every 7–10 days."],false],
+   ["Flowering and fruit set (critical)","Keep moisture even. Do not let the soil dry out.",["Light soil: every 4–5 days.","Heavy soil: every 6–7 days."],true],
+   ["Fruit ripening and picking","Irrigate lightly and regularly to reduce cracking.",null,false]],
+  save:["Drip suits hybrids well","Irrigate alternate furrows","Mulch between rows"]},
+ cotton:{mm:600,src:T+"agriculture/CropProduction/Fibre%20crops/fibrecrops_cotton.html",methods:["Furrow Irrigation","Drip Irrigation","Sprinkler Irrigation"],
+  stages:[["Sowing and germination","Irrigate after sowing and give a life irrigation on day 5.",null,false],
+   ["Vegetative (days 16–44)","Irrigate at about day 20.",["Light soil: again around day 35.","Heavy soil: again around day 40."],false],
+   ["Flowering and boll formation (critical)","Irrigate well at about days 48–55, 60–70, 72–85 and 84–100.",null,true],
+   ["Boll maturity","Irrigate from about day 108 as needed.",["Light soil: last irrigation near day 144.","Heavy soil: give fewer irrigations; stop by day 150."],false]],
+  save:["Use skip-furrow or alternate-furrow irrigation","Mulch with sugarcane trash","Excess water causes leafy growth and fewer bolls"]},
+ maize:{mm:500,src:T+"agriculture/agri_irrigationmgt_maize.html",methods:["Furrow Irrigation","Drip Irrigation","Sprinkler Irrigation"],
+  stages:[["Germination and establishment","Irrigate at sowing, day 4 and day 12.",null,false],
+   ["Vegetative","",["Light soil: days 22, 32 and 40.","Heavy soil: days 25 and 36."],false],
+   ["Tasseling and silking (critical)","Irrigate generously.",["Light soil: days 50, 60 and 72.","Heavy soil: days 48 and 60."],true],
+   ["Maturity","Irrigate in limited amounts.",["Light soil: days 85 and 95.","Heavy soil: days 72 and 85."],false]],
+  save:["Do not stress the crop at tasseling and silking","Irrigate along furrows instead of flooding","Drain excess water quickly"]},
+ sugarcane:{mm:2200,src:T+"govt_schemes_services/aas/sugarcane.html",methods:["Drip Irrigation","Furrow Irrigation"],
+  stages:[["Germination (days 0–35)","Wet the soil shallowly (2–3 cm) at short intervals, more often on sandy soil.",null,true],
+   ["Tillering (days 36–100, critical)","",["Light soil: every 8 days.","Heavy soil: every 10 days."],true],
+   ["Grand growth (days 101–270)","",["Light soil: every 8 days.","Heavy soil: every 10 days."],false],
+   ["Maturity (day 271 to harvest)","",["Light soil: every 10 days.","Heavy soil: every 14 days."],false]],
+  save:["Use alternate or skip-furrow irrigation","Spread cane trash as mulch","Drip with fertigation saves much water"]},
+ banana:{mm:1800,src:T+"horticulture/horti_fruits_banana.html",methods:["Drip Irrigation","Furrow Irrigation","Flood Irrigation"],
+  stages:[["Planting to 4th month","Surface: irrigate after planting, after 4 days, then weekly on garden land.",null,false,"5–10 litres per plant per day"],
+   ["5th month to shooting","Surface: weekly on garden land, every 10–15 days on wetland.",null,false,"10–15 litres per plant per day"],
+   ["Shooting to harvest","Surface: keep weekly irrigation. Stop 15 days before harvest.",null,false,"15 litres per plant per day until 15 days before harvest"]],
+  save:["Drip irrigation uses far less water than flooding","Form basins around plants linked by channels","Mulch with dried leaves"]}
+};
+const METHODS = ["Drip Irrigation","Sprinkler Irrigation","Flood Irrigation","Furrow Irrigation"];
+
+/* ---------- Fertilizer: blanket doses in kg/ha as [N, P2O5, K2O] ----------
+   splits: [label, fraction of N, fraction of P, fraction of K] */
+const F4 = [["Basal (at planting)",.25,1,.25],["Active tillering",.25,0,.25],["Panicle initiation",.25,0,.25],["Heading",.25,0,.25]];
+const FERT = {
+ paddy:{fym:12.5,src:T+"agriculture/agri_cropproduction_cereals_rice_tranpudlow_mainfield_nutrient_mgmt_inorganic.html",
+  types:[["Medium or long duration",[150,50,50],F4],["Short duration, Cauvery delta or Coimbatore",[150,50,50],F4],["Short duration, other areas",[120,40,40],F4],["Hybrid rice",[175,60,60],F4],
+   ["Improved White Ponni and similar",[75,50,50],[["Basal (P and part K)",0,1,.25],["Active tillering",1/3,0,.25],["Panicle initiation",1/3,0,.25],["Heading",1/3,0,.25]]]],
+  note:"Apply green manure or farmyard manure as well. A leaf colour chart helps time the nitrogen."},
+ groundnut:{fym:12.5,src:T+"agriculture/crop_prot_crop_grounnut_nutrient%20mgmt.html",gypsum:400,
+  types:[["Irrigated",[25,50,75],[["Basal (at sowing)",.5,1,.5],["20 days after sowing",.25,0,.25],["45 days after sowing",.25,0,.25]]]],
+  note:"Also apply gypsum on day 45 and incorporate it while earthing up."},
+ tomato:{fym:25,src:"http://www.agritech.tnau.ac.in/pdf/HORTICULTURE.pdf",
+  types:[["Variety",[150,100,50],[["Basal (at planting)",.5,1,1],["30 days after planting",.5,0,0]]],
+   ["Hybrid",[200,250,250],[["Basal (at planting)",.25,1,.4],["30 days after planting",.25,0,.2],["45 days after planting",.25,0,.2],["60 days after planting",.25,0,.2]]]],
+  note:"TNAU also advises borax 10 kg and zinc sulphate 50 kg per hectare at planting."},
+ cotton:{fym:12.5,src:T+"agriculture/CropProduction/Fibre%20crops/fibrecrops_cotton.html",
+  types:[["Irrigated variety",[80,40,40],[["Basal (at sowing)",.5,1,.5],["40–45 days after sowing",.5,0,.5]]],
+   ["Irrigated hybrid",[120,60,60],[["Basal (at sowing)",1/3,1,1],["45 days after sowing",1/3,0,0],["65 days after sowing",1/3,0,0]]]],
+  note:"If the basal dose is missed, apply it by day 25."},
+ maize:{fym:12.5,src:"https://tnagriculture.in/dashboard/CPG/02_%20Maize.pdf",
+  types:[["Irrigated hybrid",[250,75,75],[["Basal (before sowing)",.25,1,1],["25 days after sowing",.5,0,0],["45 days after sowing",.25,0,0]]],
+   ["Irrigated variety",[135,62.5,50],[["Basal (before sowing)",.25,1,1],["25 days after sowing",.5,0,0],["45 days after sowing",.25,0,0]]]],
+  note:"Place top-dressed fertilizer along the furrow and cover it with soil."},
+ sugarcane:{fym:12.5,src:T+"govt_schemes_services/aas/sugarcane.html",
+  types:[["Plant crop for sugar mill",[275,62.5,112.5],[["Basal (at planting)",0,1,0],["30 days",1/3,0,1/3],["60 days",1/3,0,1/3],["90 days",1/3,0,1/3]]],
+   ["Ratoon crop for sugar mill",[343.75,62.5,112.5],[["Basal (at ratooning)",.2,1,0],["30 days",.8/3,0,1/3],["60 days",.8/3,0,1/3],["90 days",.8/3,0,1/3]]],
+   ["Cane for jaggery",[225,62.5,112.5],[["Basal (at planting)",0,1,0],["30 days",1/3,0,1/3],["60 days",1/3,0,1/3],["90 days",1/3,0,1/3]]]],
+  note:"The 30, 60 and 90 day timing is for areas with assured water."},
+ banana:{perPlant:true,fym:10,src:T+"horticulture/FERTILIZER%20SCHEDULE%20FOR%20FRUIT%20CROPS.pdf",
+  types:[["Garden land, varieties other than Nendran",[110,35,330],null],["Garden land, Nendran",[150,90,300],null]],
+  splits:[["3rd month",1/3,1,1/3],["5th month",1/3,0,1/3],["7th month",1/3,0,1/3]],
+  note:"Tissue-culture banana needs 50% extra fertilizer, given at months 2, 4, 6 and 8. Ask your officer for the split amounts."},
+ chilli:{fym:25,src:T+"horticulture/horti_vegetables_chilli_Manuring.html",
+  types:[["Variety",[60,60,30],[["Basal (at planting)",.5,1,1],["30 days after planting",1/6,0,0],["60 days after planting",1/6,0,0],["90 days after planting",1/6,0,0]]],
+   ["Hybrid",[60,80,80],[["Basal (at planting)",.5,1,1],["30 days after planting",1/6,0,0],["60 days after planting",1/6,0,0],["90 days after planting",1/6,0,0]]]],
+  note:"Use 30 t of farmyard manure per hectare for hybrids."}
+};
+/* TNAU soil rating chart, available nutrient in kg/ha: [low below, high above] */
+const SOIL_LIMITS = {N:[240,480],P:[11,22],K:[110,280]};
+
+/* ---------- Farming tips ---------- */
+const TIPS = [
+ ["seed","🌱","Seed Selection",["Buy certified seed from a government depot or licensed dealer, and keep the bill and label.","Choose a variety suited to your district, season and water supply.","Test germination: place 100 seeds in a wet cloth and count the sprouts after a few days.","Treat seed before sowing with a recommended bio-agent or fungicide."]],
+ ["land","🌾","Land Preparation",["Test your soil before the season.","Plough according to the crop; summer ploughing exposes pests to sun and birds.","Level the field so water spreads evenly.","Keep drainage channels open.","Mix well-rotted manure into the soil before sowing."]],
+ ["sowing","🌿","Sowing Methods",["Sow in the recommended season and avoid very late sowing.","Sow in lines so weeding and spraying are easier.","Keep the recommended spacing and seed rate.","Fill gaps within about 10 days."]],
+ ["weed","✂️","Weed Management",["Keep the field weed-free in the first 30–45 days.","Remove weeds before they set seed.","Use mulch or a hand or power weeder.","Use herbicides only at the approved dose and time."]],
+ ["water","💧","Water Management",["Irrigate at critical stages such as flowering and grain filling.","Check soil moisture by hand before irrigating.","Use drip or sprinkler where it suits the crop.","Check the rain forecast first.","Harvest rainwater in farm ponds."]],
+ ["soil","🧪","Soil Management",["Get a Soil Health Card test and follow it.","Add farmyard manure, compost or vermicompost every season.","Grow green manures such as daincha or sunnhemp and plough them in.","Rotate cereals with pulses.","Do not burn crop residue."]],
+ ["pest","🐛","Pest Control",["Walk the field every week and look under leaves.","Use traps and protect helpful insects.","Spray only when needed, using approved products at label dose.","Wear gloves, mask and covering clothes while spraying.","Do not spray in wind or before rain, and observe the waiting period before harvest."]],
+ ["harvest","🧺","Harvesting Techniques",["Harvest at the right maturity.","Choose dry weather.","Use clean tools and avoid bruising produce.","Keep harvested produce off bare soil."]],
+ ["storage","📦","Storage Methods",["Dry grain well before storing.","Clean the store and bags before use.","Stack bags on raised planks, away from walls.","Keep out moisture and rats, and inspect monthly.","Never mix pesticides with food grain in storage."]],
+ ["sustain","🌍","Sustainable Agriculture",["Combine crops with livestock, fish or trees where it suits your farm.","Save water with micro-irrigation and mulch.","Use biofertilizers and compost along with measured chemical fertilizer.","Keep records of costs, inputs and yields.","Ask about government schemes and crop insurance before sowing."]]
+];
+
+/* ---------- Resistant varieties (each claim as published by the source) ---------- */
+const TYPES = ["Disease Resistance","Pest Resistance","Drought Tolerance","Flood Tolerance","Salinity Tolerance"];
+const S24 = T+"pdf/TNAU-SVRC%202024-Salient%20Features%20of%20Crop%20Varieties%20(ENGLISH)-03.02.2024.pdf";
+const STRY = "https://tnau.ac.in/site/adcri-trichy/?p=1373";
+const SCHK = T+"horticulture/pdf/tech_bulletin/national/Checklist-of-Commercial-Varieties-of-Vegetables.pdf";
+const V = (crop,name,traits,soil,season,duration,special,src)=>({crop,name,traits,soil,season,duration,special,src});
+const VARIETIES = [
+ V("paddy","CR 1009 Sub1",{0:"Moderately resistant to blast and brown spot",1:"Moderately resistant to brown planthopper (BPH) and white-backed planthopper",3:"Tolerant to early-stage submergence for 10–14 days"},null,"Samba (August sowing)","150–155 days","Short bold grain, good for idli",T+"agriculture/CR1009%20sub.html"),
+ V("paddy","TNAU Rice TRY 3",{0:"Resistant to blast, brown spot, sheath rot and sheath blight",1:"Resistant to leaf folder, stem borer and BPH",4:"Moderately tolerant to sodic soil"},"Sodic soils","Samba, Late Samba, Thaladi","135 days","Suited to idli making",STRY),
+ V("paddy","TRY 1",{0:"Moderately resistant to blast",3:"Tolerant to water inundation",4:"Suitable for saline and alkaline soils"},"Saline and alkaline soils","Samba, Late Samba","135 days","Medium bold grain",STRY),
+ V("paddy","TRY 2",{0:"Moderately resistant to blast",4:"Suitable for saline and alkaline soils"},"Saline and alkaline soils","Kuruvai, Navarai","115 days","Long slender grain",STRY),
+ V("paddy","CO 53",{0:"Moderately resistant to leaf blast, neck blast and sheath rot",1:"Moderately resistant to white-backed planthopper",2:"Drought tolerant"},null,null,"115–120 days","For drought-prone districts such as Ramanathapuram, Sivaganga and Virudhunagar","https://tnau.ac.in/site/research/wp-content/uploads/sites/60/2021/11/2020-Variety-Release-1.pdf"),
+ V("paddy","CO 58",{0:"Resistant to rice tungro disease; moderately resistant to blast and brown spot",1:"Resistant to green leafhopper"},null,"Late Samba, Thaladi","125 days","Aromatic long slender rice",S24),
+ V("paddy","CORH 5 (hybrid)",{0:"Moderately resistant to leaf blast, neck blast and grain discolouration",1:"Moderately resistant to BPH and stem borer"},null,"Samba, Thaladi","120–125 days","Medium slender grain",S24),
+ V("tomato","Arka Rakshak (F1)",{0:"Resistant to tomato leaf curl virus, bacterial wilt and early blight"},null,"Summer, Kharif, Rabi","140–150 days","Firm 80–100 g fruits from ICAR-IIHR","https://www.iihr.res.in/arka-rakshak-high-yielding-triple-disease-resistant-tomato-f1-hybrid-export-potential"),
+ V("cotton","VPT 2",{0:"Resistant to boll rot; moderately resistant to Alternaria leaf spot and grey mildew",1:"Moderately resistant to leafhopper"},null,"Winter rainfed and rice fallow","120–130 days","Long staple, suits high-density planting",S24),
+ V("groundnut","CO 8",{0:"Moderately resistant to late leaf spot and rust",1:"Resistant to leaf miner; moderately resistant to sucking pests"},null,"Kharif, Rabi","110–115 days","51–52% oil",S24),
+ V("groundnut","TNAU Groundnut CO 6",{2:"Tolerant to drought"},null,null,null,"Bunch pods, 49.5% oil",T+"pdf/farmers_day/variety_release_2010.pdf"),
+ V("chilli","Arka Meghana (F1)",{0:"Resistant to powdery mildew and viruses"},null,null,null,"ICAR-IIHR hybrid; the checklist names other states, not Tamil Nadu",SCHK),
+ V("chilli","Arka Harita (F1)",{0:"Resistant to powdery mildew and viruses"},null,null,null,"ICAR-IIHR hybrid listed for Tamil Nadu",SCHK),
+ V("chilli","Arka Tejasvi (F1)",{0:"Resistant to chilli leaf curl virus"},null,null,null,"ICAR-IIHR hybrid for green and dry chilli","https://www.iihr.res.in/sites/default/files/NL%20Jul-Dec%202020%20-%20Final.pdf"),
+ V("banana","Kaveri Kanchan",{0:"Resistant to Fusarium wilt (race 1 and TR4)"},null,null,"305–320 days","Rich in pro-vitamin A",S24),
+ V("maize","VGI H(M) 2 (hybrid)",{0:"Moderately resistant to Turcicum leaf blight",1:"Moderately resistant to fall armyworm and stem borer"},null,null,"95–100 days","Stays green",S24),
+ V("brinjal","CO 3",{1:"Moderately resistant to fruit and shoot borer"},null,null,"140–150 days","Long light-purple fruits; western zone of Tamil Nadu",S24)
+];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const opts = (list, sel, blank) => (blank ? `<option value="">${blank}</option>` : "") + list.map(o => {
+  const [v,t] = Array.isArray(o) ? o : [o,o]; return `<option value="${esc(v)}"${String(v)===String(sel)?" selected":""}>${esc(t)}</option>`; }).join("");
+const field = (id,label,html) => `<label for="${id}">${label}</label>${html}`;
+const sel = (id,label,list,v,blank) => field(id,label,`<select id="${id}">${opts(list,v,blank)}</select>`);
+const inp = (id,label,v,extra="") => field(id,label,`<input id="${id}" value="${esc(v)}" ${extra}>`);
+const list = a => `<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+const src = u => u ? `<p class="mute"><a href="${u}" target="_blank" rel="noopener">View source</a></p>` : "";
+const round = (n,d=0) => Number(n.toFixed(d)).toLocaleString("en-IN");
+const ACRE = 0.404686;
+const inApp = !!window.AppInventor;
+const HELP = () => `<div class="card"><h3>📞 Kisan Call Centre</h3><p>Free farm advice, 6 AM to 10 PM, every day.</p><p><b style="font-size:1.3rem;user-select:all">1800-180-1551</b></p>${inApp?"":`<a class="btn small" href="tel:18001801551">Call</a>`}</div>`;
+
+/* ---------- storage: browser storage, mirrored to TinyDB inside the Android app ---------- */
+let DB = {};
+try { DB = JSON.parse(localStorage.getItem("pasumai") || "{}") || {}; } catch (e) {}
+try { if (inApp) { const s = window.AppInventor.getWebViewString(); if (s) DB = JSON.parse(s); } } catch (e) {}
+function save(key, val) {
+  DB[key] = val; let ok = false;
+  try { localStorage.setItem("pasumai", JSON.stringify(DB)); ok = true; } catch (e) {}
+  try { if (inApp) { window.AppInventor.setWebViewString(JSON.stringify(DB)); ok = true; } } catch (e) {}
+  return ok;
+}
+const farmer = () => DB.farmer || null;
+const F = {};  /* form values remembered while the app is open */
+
+let toastTimer;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.hidden=true, 3200); }
+const go = r => { if (location.hash === "#"+r) render(); else location.hash = r; };
+
+/* ---------- drawings ---------- */
+const FIELD_SVG = (() => {
+  let blades = "";
+  for (let r=0;r<4;r++) for (let i=0;i<22-r*3;i++) { const x=(i+.5)*(400/(22-r*3)), y=128+r*22, s=.55+r*.22;
+    blades += `<path d="M${x} ${y}q${-3*s} ${-12*s} ${-9*s} ${-17*s}M${x} ${y}q0 ${-14*s} ${1*s} ${-22*s}M${x} ${y}q${3*s} ${-12*s} ${9*s} ${-16*s}" stroke="var(--field3)" stroke-width="${1.2+r*.4}" fill="none" stroke-linecap="round"/>`; }
+  return `<svg viewBox="0 0 400 210" role="img" aria-label="Drawing of a green paddy field under the sun"><rect width="400" height="210" fill="var(--sky)"/><circle cx="318" cy="50" r="27" fill="var(--haldi)"/><path d="M0 105Q90 62 190 98T400 88V210H0Z" fill="var(--field2)"/><path d="M0 120Q130 96 240 118T400 108V210H0Z" fill="var(--field1)"/>${blades}<g transform="translate(200 62)"><circle r="40" fill="var(--card)" stroke="var(--leaf)" stroke-width="4"/><path d="M0 24C-2 8 0-2 4-8" stroke="var(--leaf)" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M3-5C-22-4-27-18-24-27-6-28 4-19 3-5Z" fill="var(--field2)"/><path d="M3-9C5-25 16-29 27-27 28-13 17-6 3-9Z" fill="var(--leaf)"/></g></svg>`; })();
+
+function cropArt(k) {
+  const leaf = (x,y,r) => `<path transform="translate(${x} ${y}) rotate(${r})" d="M0 0C8-10 22-8 26 0C18 8 8 8 0 0Z" fill="#4c9a2a"/>`;
+  const dots = (pts,r,c) => pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="${r}" fill="${c}"/>`).join("");
+  const stem = d => `<path d="${d}" stroke="#4c9a2a" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  const A = {
+    paddy: stem("M30 58Q28 30 44 14")+[[44,14],[40,22],[48,21],[35,29],[44,29],[31,37],[40,37]].map(p=>`<ellipse cx="${p[0]}" cy="${p[1]}" rx="3" ry="5" transform="rotate(35 ${p[0]} ${p[1]})" fill="#d99a0b"/>`).join("")+leaf(30,52,-140),
+    groundnut: `<g fill="#c8934f"><circle cx="24" cy="38" r="11"/><circle cx="34" cy="32" r="8"/><circle cx="43" cy="25" r="11"/></g>`+dots([[21,37],[27,43],[24,31],[43,22],[48,28],[38,25]],1.5,"#8a5a22"),
+    ragi: stem("M32 58V32")+stem("M32 32Q20 26 18 14M32 32Q30 18 28 10M32 32Q42 20 45 12M32 32Q46 30 50 22")+dots([[18,15],[28,11],[45,13],[50,22]],5,"#9a5b32"),
+    sorghum: stem("M32 58V34")+dots([[32,14],[26,19],[38,19],[32,22],[23,26],[29,28],[36,28],[41,26],[32,33]],5,"#c2571f")+leaf(32,50,-35),
+    blackgram: stem("M14 18Q30 14 46 22")+`<path d="M24 20Q18 38 22 52M36 19Q36 38 44 50" stroke="#2f3a2a" stroke-width="7" fill="none" stroke-linecap="round"/>`+leaf(44,21,-30),
+    maize: `<path d="M32 8C46 18 44 40 32 52C20 40 18 18 32 8Z" fill="#f2b50f"/><path d="M27 18V44M32 12V48M37 18V44M24 26H40M23 34H41" stroke="#b47f00" stroke-width="1" fill="none"/><path d="M32 58C14 52 12 32 20 22C20 40 26 48 32 52C38 48 44 40 44 22C52 32 50 52 32 58Z" fill="#4c9a2a"/>`,
+    cotton: stem("M32 58V40")+`<path d="M18 40L32 52L46 40Z" fill="#6b4a2b"/>`+dots([[24,30],[40,30],[32,22],[32,35]],11,"#f7f7f0")+leaf(32,54,-20),
+    chilli: `<path d="M38 18C48 26 40 46 18 54C28 42 24 28 30 18Z" fill="#c62f1d"/>`+stem("M34 18Q34 10 44 8"),
+    tomato: `<circle cx="32" cy="36" r="19" fill="#d63a24"/><path d="M32 20l-10-4 8 7-5 6 7-4 7 4-5-6 8-7Z" fill="#3b7d23"/>`,
+    sugarcane: `<path d="M25 58L29 8M41 58L40 14" stroke="#7a8f2c" stroke-width="8" fill="none"/><path d="M22 46h8M23 32h8M25 20h8M37 44h8M36 30h8" stroke="#3d4a14" stroke-width="2"/>`+leaf(30,12,-35)+leaf(40,17,10),
+    banana: `<path d="M16 16C18 40 34 52 52 46C38 62 12 48 10 20Z" fill="#f2c11d"/><path d="M24 14C28 32 40 40 54 36C44 48 24 40 20 18Z" fill="#e0a80c"/><path d="M10 20L16 10L24 14L20 18Z" fill="#4c7a22"/>`,
+    brinjal: `<path d="M30 18C52 28 52 56 34 56C16 56 18 36 30 18Z" fill="#6c2f8a"/><path d="M20 24L30 14L42 24L31 21Z" fill="#3b7d23"/>`+stem("M30 16V8")
+  };
+  return `<svg viewBox="0 0 64 64" role="img" aria-label="Drawing for ${esc(CROPS[k]?.name||k)}">${A[k]||""}</svg>`;
+}
+function symptomArt(t) {
+  const L = c => `<path d="M10 50C20 8 70 2 112 10C104 52 54 70 10 50Z" fill="${c}"/><path d="M10 50Q60 36 112 10" stroke="#2c6a1c" stroke-width="2" fill="none"/>`;
+  const e = (x,y,rx,ry,f,r=-22) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${f}" transform="rotate(${r} ${x} ${y})"/>`;
+  const many = (pts,fn) => pts.map(p=>fn(p[0],p[1])).join("");
+  const P = [[40,30],[66,20],[60,44],[86,28],[34,46]];
+  const A = {
+    spindle: L("#5aa53a")+many(P,(x,y)=>e(x,y,10,4,"#7a4a1d")+e(x,y,5,1.6,"#c9c2b0")),
+    edge: L("#e0c24a")+`<path d="M22 46C36 22 70 18 96 17C84 40 54 52 22 46Z" fill="#5aa53a"/>`,
+    insects: L("#8db33c")+many(P,(x,y)=>e(x,y,5,3,"#6b3f14")+`<path d="M${x-5} ${y+5}l3-4M${x+5} ${y+5}l-3-4" stroke="#6b3f14"/>`),
+    deadheart: `<path d="M60 66V34" stroke="#5aa53a" stroke-width="6"/><path d="M60 50Q30 40 20 18Q48 22 60 44M60 48Q90 38 102 16Q72 22 60 44" fill="#5aa53a"/><path d="M60 40Q54 20 62 4Q70 22 60 40" fill="#c9a24a"/>`,
+    rings: L("#6aa83c")+many([[44,34],[76,24]],(x,y)=>[12,8,4].map((r,i)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${["#d8c043","#7a4a1d","#3f2408"][i]}"/>`).join("")),
+    curl: `<path d="M12 52C30 40 26 10 52 18C40 28 62 40 78 22C96 6 112 24 98 32C110 40 80 62 62 48C50 66 24 66 12 52Z" fill="#7cae3a"/><path d="M12 52Q50 36 98 28" stroke="#2c6a1c" stroke-width="2" fill="none"/>`,
+    holefruit: `<circle cx="60" cy="36" r="28" fill="#c9602a"/><circle cx="52" cy="30" r="7" fill="#2b1407"/><path d="M54 32q14 4 16 18" stroke="#9cc24a" stroke-width="6" fill="none" stroke-linecap="round"/>`,
+    wilt: `<path d="M60 68V20Q60 10 72 14" stroke="#8a8a2e" stroke-width="5" fill="none"/><path d="M60 28Q32 30 28 60Q52 52 60 34M60 36Q88 38 94 66Q68 60 60 42M70 14Q92 18 90 38Q74 30 70 14" fill="#b6a336"/>`,
+    angular: L("#5aa53a")+many(P,(x,y)=>`<path d="M${x-7} ${y}l5-6 9 2 2 7-10 4Z" fill="#5a3a18"/>`),
+    spots: L("#6aa83c")+many(P,(x,y)=>`<circle cx="${x}" cy="${y}" r="7" fill="#e3cd45"/><circle cx="${x}" cy="${y}" r="4" fill="#38210b"/>`),
+    powder: L("#5aa53a")+many([...P,[50,22],[74,36],[28,38],[92,18]],(x,y)=>`<circle cx="${x}" cy="${y}" r="3.5" fill="#d9822b"/><circle cx="${x+6}" cy="${y+4}" r="2.5" fill="#f1f1ea"/>`),
+    mine: L("#6aa83c")+`<path d="M28 42q14-22 24-6t24-14q10 6 18-6" stroke="#caa96a" stroke-width="7" fill="none" stroke-linecap="round"/>`,
+    streaks: L("#5aa53a")+many(P,(x,y)=>e(x,y,15,2.5,"#8a6a20",55)),
+    holes: L("#5aa53a")+many(P,(x,y)=>e(x,y,6,4,"var(--soft)")),
+    rot: `<path d="M44 4h32v64H44Z" fill="#d8d2a0"/><path d="M50 4h20v64H50Z" fill="#b23a2a"/><path d="M50 22h20v6H50ZM50 46h20v6H50Z" fill="#efe6d2"/>`,
+    whip: `<path d="M60 70V34" stroke="#7a8f2c" stroke-width="9"/><path d="M60 36C60 14 90 22 82 4" stroke="#1d1a16" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M60 48Q34 42 24 24Q50 26 60 42" fill="#5aa53a"/>`
+  };
+  return `<div class="art"><svg viewBox="0 0 120 72" role="img" aria-label="Simple illustration of the symptom">${A[t]||""}</svg>Illustration only</div>`;
+}
+
+/* ---------- screens ---------- */
+const MENU = [
+ ["weather","🌦️","Weather Information","Live forecast and farm alerts"],
+ ["crops","🌱","Crop Recommendations","Crops that suit your soil and season"],
+ ["pests","🐛","Pest & Disease Help","Match symptoms to likely problems"],
+ ["irrigation","💧","Irrigation Guidance","When and how much to water"],
+ ["fertilizer","🧪","Fertilizer Recommendations","Dose for your crop and area"],
+ ["tips","🚜","Farming Tips","Seed to storage"],
+ ["varieties","🛡️","Resistant Crop Varieties","Resistance to pests, disease and stress"]
+];
+const S = {};
+
+S.home = () => `<section class="hero">${FIELD_SVG}<div class="in"><h1>PASUMAI KURAL</h1><p class="tamil" lang="ta">பசுமை குரல்</p>
+ <h2>Welcome, Farmer!</h2><p><b>Smart Crop Advisory System</b></p><p class="mute">Get the right farming guidance at the right time.</p>
+ <button class="cta" data-go="${farmer()?"dashboard":"farmer"}">GET STARTED</button></div></section>`;
+
+S.farmer = () => {
+  const f = F.farmer || farmer() || {state:"Tamil Nadu"};
+  return `<h1>👨‍🌾 Farmer Registration</h1><p class="mute">Your details stay on this phone.</p>
+  <form id="ff" novalidate>
+  ${inp("name","Farmer Name",f.name,'autocomplete="name"')}
+  ${inp("mobile","Mobile Number",f.mobile,'inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="10 digits"')}
+  ${sel("state","State",STATES,f.state)}
+  <div id="distbox">${districtField(f.state,f.district)}</div>
+  ${inp("village","Village",f.village)}
+  ${inp("area","Land Area (Acres)",f.area,'type="number" inputmode="decimal" min="0" step="0.01"')}
+  ${sel("soil","Soil Type",SOILS,f.soil,"Choose soil type")}
+  ${sel("irrig","Irrigation Type",IRRIGATION_TYPES,f.irrig,"Choose irrigation type")}
+  <div class="stack"><button type="button" id="savebtn">SAVE DETAILS</button><button type="submit" class="primary">CONTINUE</button></div></form>`;
+};
+const districtField = (state,v) => state==="Tamil Nadu" ? sel("district","District",Object.keys(TN_DISTRICTS),v,"Choose district") : inp("district","District",v);
+
+S.dashboard = () => {
+  const f = farmer();
+  return `<div class="who"><h1>Welcome, ${f?esc(f.name):"Farmer"}!</h1>${f?`<p>📍 ${esc(f.village)}, ${esc(f.district)}</p><p>${esc(f.area)} acres · ${esc(f.soil)} · ${esc(f.irrig)}</p><p><a href="#farmer">Edit my details</a></p>`:`<p>Add your details to fill the forms automatically.</p><p><a href="#farmer">Register now</a></p>`}</div>
+  <div class="stack">${MENU.map(m=>`<button class="menu" data-go="${m[0]}"><span class="ico" aria-hidden="true">${m[1]}</span><span class="t">${m[2]}<small>${m[3]}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>${HELP()}`;
+};
+
+/* ----- weather ----- */
+const WMO = c => c===0?["☀️","Clear sky"]:c<=2?["🌤️","Partly cloudy"]:c===3?["☁️","Cloudy"]:c<=48?["🌫️","Fog"]:c<=57?["🌦️","Drizzle"]:c<=67?["🌧️","Rain"]:c<=77?["🌨️","Snow"]:c<=82?["🌧️","Rain showers"]:c<=86?["🌨️","Snow showers"]:["⛈️","Thunderstorm"];
+const W = { busy:false, error:"", places:[] };
+function defaultPlace() {
+  if (DB.place) return DB.place;
+  const f = farmer(); if (f && TN_DISTRICTS[f.district]) { const [lat,lon] = TN_DISTRICTS[f.district]; return {name:f.district+" district",lat,lon}; }
+  return null;
+}
+async function getJSON(url) {
+  const ctl = new AbortController(), t = setTimeout(()=>ctl.abort(), 12000);
+  try { const r = await fetch(url,{signal:ctl.signal}); if (!r.ok) throw new Error(r.status); return await r.json(); }
+  finally { clearTimeout(t); }
+}
+async function loadWeather(place) {
+  W.busy = true; W.error = ""; W.places = []; save("place", place); refresh("weather");
+  try {
+    const d = await getJSON(`https://api.open-meteo.com/v1/forecast?latitude=${place.lat}&longitude=${place.lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,precipitation&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max&timezone=auto&forecast_days=7`);
+    if (!d.current || !d.daily) throw new Error("bad data");
+    save("weather", {place, at:Date.now(), current:d.current, daily:d.daily});
+  } catch (e) {
+    W.error = "Live weather could not load. Check your internet connection and try again. Previews inside claude.ai block live weather, so use the downloaded app file for it.";
+  }
+  W.busy = false; refresh("weather");
+}
+/* forecast for the chosen place, only if fetched in the last 6 hours */
+function freshWeather() { const w = DB.weather, p = defaultPlace(); return w && p && w.place.name===p.name && Date.now()-w.at < 6*3600e3 ? w : null; }
+function rainNext(days) { const w = freshWeather(); return w ? w.daily.precipitation_sum.slice(0,days).reduce((a,b)=>a+(b||0),0) : null; }
+function advice(w) {
+  const d = w.daily, out = [], day = i => i===0?"today":i===1?"tomorrow":dayName(d.time[i]);
+  const first = (arr,test,n=7) => arr.slice(0,n).findIndex(test);
+  let i = first(d.precipitation_sum, v=>v>=64.5);
+  if (i>=0) out.push(["bad",`⛈️ Heavy rainfall warning: ${Math.round(d.precipitation_sum[i])} mm expected ${day(i)}. Clear drainage channels and avoid spraying and irrigation.`]);
+  else if (d.precipitation_sum[0]+d.precipitation_sum[1] >= 10) out.push(["warn","🌧️ Rain expected today or tomorrow. Avoid pesticide spraying and unnecessary irrigation."]);
+  i = first(d.temperature_2m_max, v=>v>=40);
+  if (i>=0) out.push(["bad",`🔥 Heatwave alert: up to ${Math.round(d.temperature_2m_max[i])}°C ${day(i)}. Irrigate in the morning or evening and protect young plants and animals.`]);
+  else if (first(d.temperature_2m_max, v=>v>=35, 3)>=0) out.push(["warn","🌡️ High temperature in the next 3 days. Monitor soil moisture."]);
+  i = first(d.wind_speed_10m_max, v=>v>=40);
+  if (i>=0) out.push(["bad",`💨 Strong winds expected ${day(i)}. Support tall crops such as banana and sugarcane. Do not spray.`]);
+  else if (first(d.wind_speed_10m_max, v=>v>=20, 2)>=0) out.push(["warn","💨 Breezy today or tomorrow. Spray only when the air is calm."]);
+  if (!out.length) out.push(["","✅ No rain, heat or wind warnings from this forecast. Check again tomorrow."]);
+  return out;
+}
+const dayName = s => new Date(s+"T12:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric"});
+S.weather = () => {
+  const p = defaultPlace(), w = DB.weather && p && DB.weather.place.name===p.name ? DB.weather : null;
+  let h = `<h1>🌦️ Weather Information</h1>
+  <div class="card">${sel("wdist","Choose district (Tamil Nadu)",Object.keys(TN_DISTRICTS),p?p.name.replace(" district",""):"","Choose district")}
+  ${field("wq","Or search a village or town",`<div class="row"><input id="wq" value="${esc(F.wq||farmer()?.village||"")}"><button type="button" id="wsearch">Search</button></div>`)}
+  ${W.places.map((x,i)=>`<button class="wide small" style="margin-top:8px" data-place="${i}">${esc(x.name)}</button>`).join("")}
+  <div class="stack"><button type="button" id="wgps">📍 Use my location</button></div></div>`;
+  if (W.busy) h += `<div class="note" role="status">Loading live weather…</div>`;
+  if (W.error) h += `<div class="note bad" role="alert">${W.error}</div>`;
+  if (!w) return h + (W.busy||W.error?"":`<div class="note">Choose a district, search a place or use your location to see the live forecast.</div>`);
+  const c = w.current, d = w.daily, [ico,text] = WMO(c.weather_code), mx = Math.max(10,...d.precipitation_sum);
+  const old = Date.now()-w.at > 3600e3;
+  h += `<h2>${esc(w.place.name)}</h2>${old?`<div class="note warn">This is a saved forecast, not current weather.</div>`:""}
+  <p class="mute">Updated ${new Date(w.at).toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"})} · <button class="small" id="wrefresh">Refresh</button></p>
+  <div class="card"><div class="now"><span class="ico" aria-hidden="true">${ico}</span><div><div class="big">${Math.round(c.temperature_2m)}°C</div><b>${text}</b></div></div>
+  <div class="stats" style="margin-top:10px"><div><b>${c.relative_humidity_2m}%</b><span>Humidity</span></div><div><b>${Math.round(c.wind_speed_10m)} km/h</b><span>Wind speed</span></div>
+  <div><b>${d.precipitation_probability_max[0] ?? "–"}%</b><span>Rain chance today</span></div><div><b>${d.precipitation_sum[0]} mm</b><span>Rainfall forecast today</span></div></div></div>
+  <h2>Agricultural Weather Advisory</h2>${advice(w).map(a=>`<div class="note ${a[0]}">${a[1]}</div>`).join("")}
+  <h2>7-day forecast</h2><div class="card">${d.time.map((t,i)=>`<div class="day"><b>${i===0?"Today":i===1?"Tomorrow":dayName(t)}</b><span title="${WMO(d.weather_code[i])[1]}" aria-label="${WMO(d.weather_code[i])[1]}">${WMO(d.weather_code[i])[0]}</span><span class="rain" aria-hidden="true"><i style="width:${Math.min(100,d.precipitation_sum[i]/mx*100)}%"></i></span><span>${Math.round(d.temperature_2m_max[i])}° / ${Math.round(d.temperature_2m_min[i])}°</span><small>${d.precipitation_sum[i]} mm · ${d.precipitation_probability_max[i] ?? "–"}% chance · wind ${Math.round(d.wind_speed_10m_max[i])} km/h</small></div>`).join("")}</div>
+  <p class="mute">Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0). Alert levels are set by this app. Follow official IMD warnings.</p>`;
+  return h;
+};
+
+/* ----- crop recommendations ----- */
+const LOCAL = {Kuruvai:"Kharif",Samba:"Kharif",Thaladi:"Rabi",Navarai:"Rabi"};
+function recommend(q) {
+  return Object.entries(CROPS).map(([k,c]) => {
+    const season = LOCAL[q.season] || q.season, why = [];
+    let level = 2;
+    if (!c.seasons.includes(season)) { level = 0; why.push("not usually sown in this season"); }
+    if (c.maybe.includes(q.soil)) { level = Math.min(level,1); why.push("soil is workable but not ideal"); }
+    else if (!c.soils.includes(q.soil)) { level = 0; why.push("soil is not suited"); }
+    const w = {Low:1,Medium:2,High:3}[q.water];
+    if (c.water > w) { if (c.water-w===1 && (w===2 || c.lowOK)) { level = Math.min(level,1); why.push("depends on water availability"); } else { level = 0; why.push("needs more water"); } }
+    return {k,c,level,why};
+  }).sort((a,b)=>b.level-a.level || a.c.water-b.c.water);
+}
+S.crops = () => {
+  const f = farmer()||{}, w = freshWeather();
+  const q = F.crops || {soil:f.soil||"",season:"",water:f.irrig==="Rainfed"?"Low":"",area:f.area||"",district:f.district||"",temp:w?Math.round(w.current.temperature_2m):"",rain:w?Math.round(rainNext(7)):""};
+  let h = `<h1>🌱 Smart Crop Recommendations</h1><form id="cf" novalidate>
+  ${sel("c_soil","Soil Type",SOILS,q.soil,"Choose soil type")}
+  ${field("c_season","Season",`<select id="c_season"><option value="">Choose season</option><optgroup label="General">${opts(["Kharif","Rabi","Summer"],q.season)}</optgroup><optgroup label="Tamil Nadu">${opts(["Kuruvai","Samba","Thaladi","Navarai"],q.season)}</optgroup></select>`)}
+  ${sel("c_water","Water Availability",[["Low","Low (rainfed or very little water)"],["Medium","Medium (some irrigation)"],["High","High (assured irrigation)"]],q.water,"Choose water availability")}
+  ${inp("c_area","Land Area (Acres)",q.area,'type="number" inputmode="decimal" min="0" step="0.01"')}
+  ${inp("c_district","District",q.district)}
+  <div class="row"><div>${inp("c_temp","Temperature (°C)",q.temp,'type="number" inputmode="decimal"')}</div><div>${inp("c_rain","Rain, next 7 days (mm)",q.rain,'type="number" inputmode="decimal"')}</div></div>
+  <p class="mute">Temperature and rain fill in after you open Weather. You can also type them.</p>
+  <div class="stack"><button class="primary" type="submit">🔍 Get Crop Recommendations</button></div></form><div id="out"></div>`;
+  return h;
+};
+function cropResults() {
+  const q = F.crops, all = recommend(q), good = all.filter(r=>r.level), no = all.filter(r=>!r.level);
+  const notes = [];
+  if (q.rain!=="" && +q.rain>=100) notes.push("Much rain is expected. Make drainage ready and delay sowing of upland crops until the field drains.");
+  if (q.rain!=="" && +q.rain<5 && q.water==="Low") notes.push("Little rain is expected and water is low. Wait for good soil moisture before sowing.");
+  if (q.temp!=="" && +q.temp>=38) notes.push("It is very hot. Avoid sowing or transplanting in the afternoon.");
+  return `<h2>Recommended Crops</h2>${notes.map(n=>`<div class="note warn">${n}</div>`).join("")}
+  ${good.length?good.map(r=>`<div class="card"><div class="crophead">${cropArt(r.k)}<div><h3>${r.c.name}</h3><span class="tag ${r.level===2?"good":"warn"}">${r.level===2?"Suitable":"Depends on conditions"}</span>${r.why.length?`<p class="mute">${r.why.join("; ")}</p>`:""}</div></div>
+   <p>${r.c.waterText} · ${r.c.days[0]}–${r.c.days[1]} days</p><button class="wide small" data-go="crop-${r.k}">VIEW CROP DETAILS</button></div>`).join(""):`<div class="note warn">No crop in this app matches all of these conditions. Try another season or ask your agriculture office.</div>`}
+  ${no.length?`<details><summary>Crops not suggested (${no.length})</summary>${no.map(r=>`<p><b>${r.c.name}:</b> ${r.why.join("; ")}</p>`).join("")}</details>`:""}
+  <p class="mute">This is general guidance from soil, season and water. It does not yet include district-specific trial data${q.district?` for ${esc(q.district)}`:""}. Confirm with your block agriculture office before sowing.</p>`;
+}
+function harvestWindow(c,date) {
+  const add = n => { const d = new Date(date+"T12:00:00"); d.setDate(d.getDate()+n); return d.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}); };
+  return date ? `${add(c.days[0])} to ${add(c.days[1])}` : "Choose a date";
+}
+const today = () => { const d = new Date(); return new Date(d-d.getTimezoneOffset()*60000).toISOString().slice(0,10); };
+S.crop = k => {
+  const c = CROPS[k], date = F.sow || today();
+  return `<div class="crophead">${cropArt(k)}<h1>${c.name}</h1></div>
+  <div class="card"><dl><dt>Suitable soil</dt><dd>${c.soils.join(", ")}</dd><dt>Suitable season</dt><dd>${c.when}</dd><dt>Water requirement</dt><dd>${c.waterText}</dd><dt>Growing duration</dt><dd>${c.days[0]}–${c.days[1]} days</dd></dl></div>
+  <div class="card">${inp("sow","Sowing or planting date",date,'type="date"')}<p><b>Expected harvest period</b><br><span id="harvest">${harvestWindow(c,date)}</span></p></div>
+  <h2>Basic cultivation steps</h2><div class="card"><ol>${c.steps.map(s=>`<li>${s}</li>`).join("")}</ol></div>
+  <p class="mute">Durations and dates vary with variety and weather.</p>`;
+};
+
+/* ----- pests ----- */
+S.pests = () => {
+  const q = F.pests || {crop:"",tags:[],text:""};
+  return `<h1>🐛 Pest & Disease Help</h1><form id="pf" novalidate>
+  ${sel("p_crop","1. Select your crop",Object.keys(PESTS).map(k=>[k,CROPS[k].name]),q.crop,"Choose crop")}
+  <label>2. Photo of the affected plant (optional)</label>
+  ${inApp?`<div class="note">Photo upload is not available in this app build. Take a photo with your camera to show an expert.</div>`:`<div class="row"><label class="btn fileb">📷 TAKE PHOTO<input type="file" accept="image/*" capture="environment" class="photo" id="cam"></label><label class="btn fileb">🖼️ UPLOAD IMAGE<input type="file" accept="image/*" class="photo" id="gal"></label></div>
+  <div id="preview">${F.photo?`<img src="${F.photo}" alt="Your crop photo"><p class="mute">This app does not analyse photos. Compare it with the results and show it to an agriculture officer.</p>`:`<p class="mute">The app shows your photo but does not analyse it.</p>`}</div>`}
+  <label>3. What do you see?</label><div class="checks">${SYMPTOMS.map(s=>`<label><input type="checkbox" name="sym" id="sym-${s[0]}" value="${s[0]}"${q.tags.includes(s[0])?" checked":""}>${s[1]}</label>`).join("")}</div>
+  ${field("p_text","Describe the symptoms of your crop",`<textarea id="p_text" placeholder="Example: yellow leaves with black spots">${esc(q.text)}</textarea>`)}
+  <div class="stack"><button class="primary" type="submit">🔍 Identify Disease</button></div></form><div id="out"></div>`;
+};
+function identify(q) {
+  const tags = new Set(q.tags); SYMPTOMS.forEach(s => { if (s[2].test(q.text)) tags.add(s[0]); });
+  const hits = PESTS[q.crop].map(p => {
+    const n = [...tags].filter(t=>p.tags.includes(t)).length;
+    return {p,n,score: n + (q.text && q.text.toLowerCase().includes(p.name.split(" (")[0].toLowerCase()) ? 5 : 0)};
+  }).filter(h=>h.score>0).sort((a,b)=>b.score-a.score || a.p.tags.length-b.p.tags.length).slice(0,3);
+  return {tags,hits};
+}
+function pestResults() {
+  const q = F.pests, {tags,hits} = identify(q);
+  if (!tags.size && !hits.length) return `<div class="note warn" role="alert">Tick at least one symptom or describe it using words such as yellow, spots, curling, holes or drying.</div>`;
+  if (!hits.length) return `<div class="note warn">No match in this app's list. Show the plant to your agriculture officer.</div>${HELP()}`;
+  return `<h2>Possible problems</h2><div class="note warn"><b>Not a confirmed diagnosis.</b> These are matches by symptom only. Confirm with an agriculture expert before treating.</div>
+  ${hits.map(({p,n})=>`<article class="card">${symptomArt(p.art)}<h3>${p.name}</h3><span class="tag">${p.kind}</span><p class="mute">${tags.size?`Matches ${n} of ${tags.size} symptoms you gave`:"Matches the name you typed"}</p>
+  <p><b>Symptoms</b></p>${list(p.symptoms)}<p><b>Cause</b></p><p>${p.causes}</p><p><b>Prevention</b></p>${list(p.prevention)}<p><b>Recommended treatment</b></p>${list(p.treatment)}</article>`).join("")}${HELP()}`;
+}
+
+/* ----- irrigation ----- */
+const soilClass = s => s==="Sandy Soil"?"light":["Clay Soil","Black Soil","Alluvial Soil"].includes(s)?"heavy":"medium";
+S.irrigation = () => {
+  const f = farmer()||{};
+  const q = F.irr || {crop:"",soil:f.soil||"",area:f.area||"",stage:0,method:METHODS.includes(f.irrig)?f.irrig:""};
+  return `<h1>💧 Smart Irrigation Guidance</h1><form id="if" novalidate>
+  ${sel("i_crop","Select Crop",Object.keys(IRRIGATION).map(k=>[k,CROPS[k].name]),q.crop,"Choose crop")}
+  ${sel("i_soil","Soil Type",SOILS,q.soil,"Choose soil type")}
+  ${inp("i_area","Land Area (Acres)",q.area,'type="number" inputmode="decimal" min="0" step="0.01"')}
+  <div id="stagebox">${stageField(q.crop,q.stage)}</div>
+  ${sel("i_method","Irrigation Method",METHODS,q.method,"Choose method")}
+  <div class="stack"><button class="primary" type="submit">💧 Get Irrigation Advice</button></div></form><div id="out"></div>`;
+};
+const stageField = (crop,v) => sel("i_stage","Crop Growth Stage",crop?IRRIGATION[crop].stages.map((s,i)=>[i,s[0]]):[[0,"Choose a crop first"]],v);
+function irrResults() {
+  const q = F.irr, c = IRRIGATION[q.crop], st = c.stages[q.stage], area = +q.area, cls = soilClass(q.soil);
+  const mm = String(c.mm).split("–").map(Number);
+  const litres = m => m*area*ACRE*10000, lakh = l => l>=1e5 ? `${round(l/1e5,1)} lakh litres` : `${round(l)} litres`;
+  const season = mm.map(m=>lakh(litres(m))).join(" to ");
+  const ok = c.methods.includes(q.method);
+  let freq = st[1] ? `<p>${st[1]}</p>` : "";
+  if (st[2] && q.crop==="paddy") freq += list(st[2]);
+  else if (st[2]) freq += cls==="medium" ? `<p>Your soil is in between. Check moisture and use a gap between these:</p>${list(st[2])}` : list([st[2][cls==="light"?0:1]]);
+  else if (cls!=="medium") freq += `<p class="mute">${cls==="light"?"Light soil drains fast, so check it more often.":"Heavy soil holds water, so check before each irrigation."}</p>`;
+  let amount = "";
+  if (q.method==="Drip Irrigation") amount = st[4] ? `With drip: ${st[4]}.` : "With drip, give small amounts often, set by your drip system's flow rate and the weather.";
+  else if (q.method==="Sprinkler Irrigation") amount = "With sprinklers, apply light irrigations and stop before water pools.";
+  else amount = `A surface irrigation 5 cm deep on ${round(area,2)} acres is about ${lakh(litres(50))}.`;
+  const r = rainNext(3);
+  const rain = r===null ? `<div class="note">Open <a href="#weather">Weather Information</a> first to add rain-based advice here.</div>`
+    : r>=25 ? `<div class="note warn">🌧️ About ${Math.round(r)} mm of rain is forecast in 3 days. Postpone irrigation and check drainage.</div>`
+    : r>=8 ? `<div class="note warn">🌦️ About ${Math.round(r)} mm of rain is forecast in 3 days. Check the soil first; a lighter or later irrigation may be enough.</div>`
+    : `<div class="note">Only about ${Math.round(r)} mm of rain is forecast in 3 days. Do not count on rain.</div>`;
+  return `<h2>Irrigation advice: ${CROPS[q.crop].name}</h2>${st[3]?`<div class="note warn"><b>Critical stage.</b> Water shortage now can reduce yield.</div>`:""}${rain}
+  <div class="card"><h3>Water requirement</h3><p>About <b>${c.mm} mm</b> for the whole crop, or ${season} on ${round(area,2)} acres (rain included).</p><p>${amount}</p></div>
+  <div class="card"><h3>How often at this stage</h3>${freq}<h3 style="margin-top:12px">Best time</h3><p>Early morning or evening.</p></div>
+  <div class="card"><h3>Irrigation method</h3><p><span class="tag ${ok?"good":"warn"}">${ok?"Suits this crop":"Not the usual choice"}</span> ${q.method}</p><p>Common choices: ${c.methods.join(", ")}.</p></div>
+  <div class="card"><h3>Water-saving techniques</h3>${list(c.save)}<h3 style="margin-top:12px">Over-irrigation warning</h3><p>Standing water in the root zone ${q.crop==="paddy"?"deeper than needed wastes water and nutrients":"can rot roots, spread disease and wash away fertilizer"}.</p>
+  <h3 style="margin-top:12px">During drought</h3>${list(["Save water for the critical stages","Mulch the soil and remove weeds","Irrigate alternate rows or furrows where possible"])}</div>
+  ${c.src?src(c.src)+`<p class="mute">Schedule and seasonal water figures follow TNAU guidance. Adjust for your field and weather.</p>`:`<p class="mute">This schedule is general guidance. Confirm it with your agriculture officer.</p>`}`;
+}
+
+/* ----- fertilizer ----- */
+S.fertilizer = () => {
+  const f = farmer()||{};
+  const q = F.fert || {crop:"",soil:f.soil||"",area:f.area||"",type:0,stage:0,plants:"",N:"",P:"",K:""};
+  return `<h1>🧪 Smart Fertilizer Recommendations</h1><form id="zf" novalidate>
+  ${sel("z_crop","Select Crop",Object.keys(FERT).map(k=>[k,CROPS[k].name]),q.crop,"Choose crop")}
+  <div id="typebox">${typeFields(q)}</div>
+  ${sel("z_soil","Soil Type",SOILS,q.soil,"Choose soil type")}
+  ${inp("z_area","Land Area (Acres)",q.area,'type="number" inputmode="decimal" min="0" step="0.01"')}
+  <details ${q.N||q.P||q.K?"open":""}><summary>Add soil test results (optional)</summary><p class="mute">Available nutrients in kg per hectare, as printed on your soil test report.</p>
+  <div class="row">${[["N","Nitrogen"],["P","Phosphorus (P)"],["K","Potassium (K)"]].map(x=>`<div>${inp("z_"+x[0],x[1],q[x[0]],'type="number" inputmode="decimal" min="0"')}</div>`).join("")}</div></details>
+  <div class="stack"><button class="primary" type="submit">🔍 Get Fertilizer Recommendations</button></div></form><div id="out"></div>`;
+};
+function typeFields(q) {
+  if (!q.crop) return `<p class="mute">Choose a crop to see its types and growth stages.</p>`;
+  const c = FERT[q.crop], splits = c.perPlant ? c.splits : c.types[q.type][2];
+  return sel("z_type","Variety type",c.types.map((t,i)=>[i,t[0]]),q.type) +
+    (q.crop==="paddy" ? `<p class="mute">For short-duration rice, ${DELTA_TRACT.includes(farmer()?.district)?`${esc(farmer().district)} falls in the delta or Coimbatore group.`:"pick the line that matches your area."}</p>` : "") +
+    sel("z_stage","Crop Growth Stage (next application)",splits.map((s,i)=>[i,s[0]]),q.stage) +
+    (c.perPlant ? inp("z_plants","Number of banana plants",q.plants,'type="number" inputmode="numeric" min="1" step="1" placeholder="Blank = about 1250 per acre"') : "");
+}
+function fertCalc(q) {
+  const c = FERT[q.crop], t = c.types[q.type], ha = +q.area*ACRE;
+  const plants = c.perPlant ? (+q.plants || Math.round(ha*3080)) : 0;
+  const adj = ["N","P","K"].map(n => { if (q[n]===""||q[n]==null) return {f:1,r:null}; const v=+q[n],[lo,hi]=SOIL_LIMITS[n]; return v<lo?{f:1.25,r:"Low"}:v>hi?{f:.75,r:"High"}:{f:1,r:"Medium"}; });
+  const total = t[1].map((x,i) => (c.perPlant ? x*plants/1000 : x*ha) * adj[i].f);
+  const splits = (c.perPlant?c.splits:t[2]).map(s => { const n=[total[0]*s[1],total[1]*s[2],total[2]*s[3]]; return {label:s[0],urea:n[0]/.46,ssp:n[1]/.16,mop:n[2]/.60}; });
+  return {c,t,ha,plants,adj,total,splits};
+}
+function fertResults() {
+  const q = F.fert, r = fertCalc(q), {c,t,ha,plants,adj,total,splits} = r;
+  const kg = n => n===0?"–":round(n,n<10?1:0);
+  const tested = adj.some(a=>a.r);
+  const sum = k => splits.reduce((a,s)=>a+s[k],0);
+  return `<h2>${CROPS[q.crop].name}: ${t[0]}</h2><p>For ${round(+q.area,2)} ${+q.area===1?"acre":"acres"} (${round(ha,2)} ha)${c.perPlant?`, ${round(plants)} plants`:""}.</p>
+  <div class="card"><h3>Recommended nutrients</h3><div class="scroll"><table><tr><th>Nutrient</th><th>${c.perPlant?"g/plant":"kg/ha"}</th><th>Soil test</th><th>Field kg</th></tr>
+  ${["Nitrogen N","Phosphate P₂O₅","Potash K₂O"].map((n,i)=>`<tr><td>${n}</td><td>${round(t[1][i],t[1][i]%1?1:0)}</td><td>${adj[i].r?`${adj[i].r}${adj[i].f!==1?` (${adj[i].f>1?"+":"−"}25%)`:""}`:"Not given"}</td><td><b>${kg(total[i])}</b></td></tr>`).join("")}</table></div>
+  <p class="mute">${tested?"Soil ratings use the TNAU rating chart. The standard column is the dose before any soil-test change. The 25% increase or decrease is a simple general rule; your soil health card or officer may give a more exact dose.":"No soil test entered, so this is the standard (blanket) dose. A soil test gives a better answer."}</p></div>
+  <div class="card"><h3>Application timing</h3><p>Fertilizer in kg for your whole field. The highlighted row is the stage you chose.</p><div class="scroll"><table><tr><th>When</th><th>Urea</th><th>SSP</th><th>MOP</th></tr>
+  ${splits.map((s,i)=>`<tr class="${i==q.stage?"nowrow":""}"><td>${s.label}</td><td>${kg(s.urea)}</td><td>${kg(s.ssp)}</td><td>${kg(s.mop)}</td></tr>`).join("")}
+  <tr><td><b>Total</b></td><td><b>${kg(sum("urea"))}</b></td><td><b>${kg(sum("ssp"))}</b></td><td><b>${kg(sum("mop"))}</b></td></tr></table></div>
+  <p class="mute">Urea 46% N, single super phosphate (SSP) 16% P₂O₅, muriate of potash (MOP) 60% K₂O.</p><p>${c.note}</p>${c.gypsum?`<p><b>Gypsum on day 45: ${round(c.gypsum*ha)} kg</b></p>`:""}
+  <p><b>Method:</b> apply on moist soil, place it near the roots or along the furrow, cover it, and avoid applying just before heavy rain.${q.soil==="Sandy Soil"?" On sandy soil, giving nitrogen and potash in more, smaller splits reduces loss.":""}</p></div>
+  <div class="card"><h3>Organic fertilizer options</h3>${list([
+    c.perPlant?`<b>Farmyard manure:</b> about ${c.fym} kg per plant, ${round(c.fym*plants/1000,1)} t in all`:`<b>Farmyard manure or compost:</b> about ${round(c.fym*ha,1)} t (${c.fym} t per hectare) before the last ploughing`,
+    "<b>Vermicompost:</b> a concentrated option; about 2.5 t per hectare can replace farmyard manure",
+    "<b>Green manure:</b> grow daincha or sunnhemp and plough it in before the crop",
+    "<b>Biofertilizers:</b> Azospirillum or Rhizobium (for pulses and groundnut) and phosphobacteria"])}</div>
+  <div class="card"><details><summary>Signs of nutrient shortage</summary>${list(["<b>Nitrogen:</b> older leaves turn pale yellow","<b>Phosphorus:</b> small dark or purplish leaves, weak roots","<b>Potassium:</b> scorched edges on older leaves","<b>Zinc:</b> small leaves, brown or pale bands","<b>Iron:</b> young leaves yellow while veins stay green","<b>Magnesium:</b> yellowing between veins on older leaves","<b>Sulphur:</b> young leaves turn pale"])}</details>
+  <details><summary>Improve soil health</summary>${list(["Test soil regularly","Add organic matter every season","Rotate with pulses","Do not burn residue","Avoid excess urea"])}</details></div>
+  ${src(c.src)}<p class="mute">Standard doses are Tamil Nadu recommendations. Outside Tamil Nadu, use your state university's dose.</p>`;
+}
+
+/* ----- tips ----- */
+S.tips = () => `<h1>🚜 Smart Farming Tips</h1><p>Choose a topic.</p><div class="grid">${TIPS.map(t=>`<button data-go="tips-${t[0]}"><span class="ico" aria-hidden="true">${t[1]}</span>${t[2]}</button>`).join("")}</div>`;
+S.tip = id => { const t = TIPS.find(x=>x[0]===id); return `<h1>${t[1]} ${t[2]}</h1>${t[3].map(x=>`<div class="card">${x}</div>`).join("")}`; };
+
+/* ----- varieties ----- */
+const VCROPS = ["paddy","tomato","cotton","groundnut","chilli","banana","maize","brinjal"];
+const vname = k => CROPS[k]?.name || "Brinjal";
+S.varieties = () => {
+  const q = F.var || {crop:"paddy",type:0};
+  return `<h1>🛡️ Resistant Crop Varieties</h1>${sel("v_crop","Step 1: Select crop",VCROPS.map(k=>[k,vname(k)]),q.crop)}
+  ${sel("v_type","Step 2: Select problem",TYPES.map((t,i)=>[i,t]),q.type)}<div id="out">${varietyResults(q)}</div>`;
+};
+function varietyResults(q) {
+  const found = VARIETIES.filter(v=>v.crop===q.crop && v.traits[q.type]);
+  const have = TYPES.filter((t,i)=>VARIETIES.some(v=>v.crop===q.crop && v.traits[i]));
+  const nil = "Not stated in source";
+  return `<h2>Step 3: ${found.length} ${found.length===1?"variety":"varieties"}</h2>
+  ${found.length?found.map(v=>`<div class="card"><div class="crophead">${cropArt(v.crop)}<div><h3>${v.name}</h3><span class="tag good">${TYPES[q.type]}</span></div></div>
+  <dl><dt>Crop</dt><dd>${vname(v.crop)}</dd><dt>Resistance</dt><dd><b>${v.traits[q.type]}</b></dd><dt>Suitable soil</dt><dd>${v.soil||nil}</dd><dt>Suitable season</dt><dd>${v.season||nil}</dd><dt>Duration</dt><dd>${v.duration||nil}</dd><dt>Special features</dt><dd>${v.special}</dd></dl>${src(v.src)}</div>`).join("")
+  :`<div class="note">This app has no checked ${vname(q.crop).toLowerCase()} variety for ${TYPES[q.type].toLowerCase()}. It does have: ${have.join(", ")||"none yet"}.</div>`}
+  <div class="note warn">Resistance covers only the pest, disease or stress named. Check seed availability and local suitability with TNAU or your agriculture office.</div>`;
+}
+
+/* ---------- router ---------- */
+function parse() {
+  const h = location.hash.slice(1) || "home";
+  if (h.startsWith("crop-") && CROPS[h.slice(5)]) return {name:"crop",arg:h.slice(5),parent:"crops"};
+  if (h.startsWith("tips-") && TIPS.some(t=>t[0]===h.slice(5))) return {name:"tip",arg:h.slice(5),parent:"tips"};
+  const name = S[h] && h!=="crop" && h!=="tip" ? h : "home";
+  return {name,parent: name==="dashboard"?"home":name==="farmer"?(farmer()?"dashboard":"home"):"dashboard"};
+}
+function render() {
+  const r = parse();
+  $("#bar").hidden = r.name==="home";
+  $("#back").onclick = () => go(r.parent);
+  $("#screen").innerHTML = S[r.name](r.arg);
+  const done = {crops:[F.crops,cropResults],pests:[F.pests,pestResults],irrigation:[F.irr,irrResults],fertilizer:[F.fert,fertResults]}[r.name];
+  if (done && done[0]?.done) $("#out").innerHTML = done[1]();
+}
+function refresh(name) { if (parse().name===name) render(); }
+function show(html) { const o = $("#out"); o.innerHTML = html; o.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"}); }
+
+/* ---------- validation ---------- */
+function invalid(errors) {
+  document.querySelectorAll(".err").forEach(e=>e.remove());
+  document.querySelectorAll("[aria-invalid]").forEach(e=>e.removeAttribute("aria-invalid"));
+  const ids = Object.keys(errors);
+  ids.forEach(id => { const el = $("#"+id); el.setAttribute("aria-invalid","true"); el.insertAdjacentHTML("afterend",`<p class="err">${errors[id]}</p>`); });
+  if (ids.length) { $("#"+ids[0]).focus(); toast("Please check the marked fields"); }
+  return ids.length>0;
+}
+const val = id => ($("#"+id)?.value ?? "").trim();
+const need = (e,id,msg) => { if (!val(id)) e[id]=msg; };
+const needArea = (e,id) => { const a=+val(id); if (!(a>0 && a<=10000)) e[id]="Enter the land area in acres, above 0"; };
+function readFarmer() { return {name:val("name"),mobile:val("mobile"),state:val("state"),district:val("district"),village:val("village"),area:val("area"),soil:val("soil"),irrig:val("irrig")}; }
+function saveFarmer() {
+  const e = {};
+  need(e,"name","Enter your name");
+  if (!/^[6-9]\d{9}$/.test(val("mobile"))) e.mobile = "Enter a 10-digit mobile number starting with 6, 7, 8 or 9";
+  need(e,"district","Choose or enter your district"); need(e,"village","Enter your village"); needArea(e,"area");
+  need(e,"soil","Choose your soil type"); need(e,"irrig","Choose your irrigation type");
+  if (invalid(e)) return false;
+  const old = farmer(), f = readFarmer();
+  const ok = save("farmer", f);
+  if (!old || old.district!==f.district) save("place", null);
+  delete F.farmer; delete F.crops; delete F.irr; delete F.fert; delete F.wq;
+  toast(ok ? "Details saved successfully" : "Saved for now, but this phone is blocking storage");
+  return true;
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]"); if (g) return go(g.dataset.go);
+  const p = e.target.closest("[data-place]"); if (p) return loadWeather(W.places[+p.dataset.place]);
+  const id = e.target.closest("button")?.id;
+  if (id==="savebtn") saveFarmer();
+  if (id==="wrefresh") loadWeather(defaultPlace());
+  if (id==="wsearch") searchPlace();
+  if (id==="wgps") {
+    if (!navigator.geolocation) { W.error="This device cannot share its location. Choose a district instead."; return render(); }
+    W.busy = true; W.error = ""; render();
+    navigator.geolocation.getCurrentPosition(
+      x => loadWeather({name:"My location",lat:+x.coords.latitude.toFixed(3),lon:+x.coords.longitude.toFixed(3)}),
+      () => { W.busy=false; W.error="Location was not shared. Choose a district or search for your village."; refresh("weather"); }, {timeout:10000});
+  }
+});
+async function searchPlace() {
+  const q = val("wq"); F.wq = q; if (!q) return invalid({wq:"Type a village or town name"});
+  W.busy = true; W.error = ""; W.places = []; render();
+  try {
+    const d = await getJSON(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&countryCode=IN&language=en`);
+    W.places = (d.results||[]).map(r=>({name:[r.name,r.admin2,r.admin1].filter(Boolean).join(", "),lat:r.latitude,lon:r.longitude}));
+    if (!W.places.length) W.error = "No place found with that name. Try a nearby town or choose your district.";
+  } catch (err) { W.error = "Place search could not load. Check your internet connection, or choose your district. Previews inside claude.ai block live weather."; }
+  W.busy = false; refresh("weather");
+}
+document.addEventListener("keydown", e => { if (e.key==="Enter" && e.target.id==="wq") searchPlace(); });
+document.addEventListener("input", () => { if (parse().name==="farmer" && $("#name")) F.farmer = readFarmer(); });
+document.addEventListener("change", e => {
+  const t = e.target;
+  if (t.id==="state") { $("#distbox").innerHTML = districtField(t.value,""); F.farmer = readFarmer(); }
+  if (t.id==="wdist" && t.value) { const [lat,lon]=TN_DISTRICTS[t.value]; loadWeather({name:t.value+" district",lat,lon}); }
+  if (t.id==="sow") { F.sow = t.value; $("#harvest").textContent = harvestWindow(CROPS[parse().arg],t.value); }
+  if (t.classList.contains("photo") && t.files[0]) {
+    const rd = new FileReader(); rd.onload = () => { F.photo = rd.result; $("#preview").innerHTML = `<img src="${F.photo}" alt="Your crop photo"><p class="mute">This app does not analyse photos. Compare it with the results and show it to an agriculture officer.</p>`; }; rd.readAsDataURL(t.files[0]);
+  }
+  if (t.id==="i_crop") { $("#stagebox").innerHTML = stageField(t.value,0); $("#out").innerHTML=""; if (F.irr) F.irr.done=false; }
+  if (t.id==="z_crop" || t.id==="z_type") {
+    const crop = val("z_crop"); $("#typebox").innerHTML = typeFields({crop,type:t.id==="z_type"?+t.value:0,stage:0,plants:""}); $("#out").innerHTML=""; if (F.fert) F.fert.done=false;
+  }
+  if (t.id==="v_crop" || t.id==="v_type") { F.var = {crop:val("v_crop"),type:+val("v_type")}; $("#out").innerHTML = varietyResults(F.var); }
+  if (t.id==="p_crop") { delete F.photo; if (F.pests) F.pests.done=false; $("#out").innerHTML=""; }
+});
+document.addEventListener("submit", ev => {
+  ev.preventDefault(); const id = ev.target.id, e = {};
+  if (id==="ff") { if (saveFarmer()) go("dashboard"); }
+  if (id==="cf") {
+    need(e,"c_soil","Choose soil type"); need(e,"c_season","Choose season"); need(e,"c_water","Choose water availability"); needArea(e,"c_area");
+    if (invalid(e)) return;
+    F.crops = {soil:val("c_soil"),season:val("c_season"),water:val("c_water"),area:val("c_area"),district:val("c_district"),temp:val("c_temp"),rain:val("c_rain"),done:true}; show(cropResults());
+  }
+  if (id==="pf") {
+    need(e,"p_crop","Choose your crop"); if (invalid(e)) return;
+    F.pests = {crop:val("p_crop"),tags:[...document.querySelectorAll("[name=sym]:checked")].map(x=>x.value),text:val("p_text"),done:true}; show(pestResults());
+  }
+  if (id==="if") {
+    need(e,"i_crop","Choose crop"); need(e,"i_soil","Choose soil type"); needArea(e,"i_area"); need(e,"i_method","Choose irrigation method"); if (invalid(e)) return;
+    F.irr = {crop:val("i_crop"),soil:val("i_soil"),area:val("i_area"),stage:+val("i_stage"),method:val("i_method"),done:true}; show(irrResults());
+  }
+  if (id==="zf") {
+    need(e,"z_crop","Choose crop"); need(e,"z_soil","Choose soil type"); needArea(e,"z_area");
+    ["z_N","z_P","z_K"].forEach(k=>{ if (val(k) && !(+val(k)>=0)) e[k]="Enter a number"; });
+    if (val("z_plants") && !(+val("z_plants")>=1)) e.z_plants="Enter the number of plants";
+    if (invalid(e)) return;
+    F.fert = {crop:val("z_crop"),type:+val("z_type"),stage:+val("z_stage"),plants:val("z_plants"),soil:val("z_soil"),area:val("z_area"),N:val("z_N"),P:val("z_P"),K:val("z_K"),done:true}; show(fertResults());
+  }
+});
+window.addEventListener("hashchange", () => { W.error=""; W.places=[]; render(); window.scrollTo(0,0); if (parse().name==="weather") autoWeather(); });
+function autoWeather() { const p = defaultPlace(); if (p && !W.busy && !(freshWeather() && Date.now()-DB.weather.at < 15*60e3)) loadWeather(p); }
+render();
+if (parse().name==="weather") autoWeather();
+})();
+</script>
+</body>
+</html>
